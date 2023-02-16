@@ -1,3 +1,3 @@
-# Quizzz
+# Quizzz Gruppenarbeit
  
-# Group 4: Süheda, Mete, Önder & Maik
+# Group 4: Süheda, Mete, Ayon & Maik
