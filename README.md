@@ -1,4 +1,3 @@
-# Quizzz
- 
-# Group 4: Shüeda, Mete, Önder & Maiki
+# Quizzz Gruppenarbeit
 
+# Group 4: Süheda, Mete, Ayon & Maiki
