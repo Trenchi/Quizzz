@@ -15,14 +15,14 @@
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\RU.js133213761410105212 0
 129C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\react-refresh\babel.js133213761367129193 0
 117C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\.bin\json5133213761417082352 0
-98C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist133214665167386214 1
+98C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist133214673941286865 1
 120C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\chalk\license133213761366014342 0
 145C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\features\css-sel3.js133213761396552726 0
-107C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src\client.js133214598484653738 0
+107C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src\client.js133214673674073075 0
 114C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\globals133213761372568922 1
 151C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@swc\helpers\lib\_interop_require_default.js133213761386812555 0
 137C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\lmdb\dependencies\lmdb-data-v1133213761366044314 1
-97C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src133213764570691744 1
+97C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src133214673674073075 1
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\GH.js133213761400995811 0
 152C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\transformer-raw\lib\RawTransformer.js133213761367526607 0
 131C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\terser\tools\terser.d.ts133213761388869603 0
@@ -46,7 +46,7 @@
 156C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest6.c133213761389672635 0
 140C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\htmlnano\lib\modules\minifySvg.js133213761380958448 0
 124C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@msgpackr-extract133213761425940078 1
-106C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\package.json133214621599359605 0
+106C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\package.json133214673674063065 0
 139C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@jridgewell\set-array\dist\types133213761374124101 1
 111C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\package-lock.json133213761427131727 0
 143C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\css-what\lib\commonjs\types.d.ts.map133213761380289302 0
@@ -54,7 +54,7 @@
 126C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\parcel\package.json133213761373922754 0
 162C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\features\css-container-query-units.js133213761393583515 0
 115C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\entities133213761380988446 1
-108C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src\index.html133214665149686966 0
+108C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src\index.html133214673674073075 0
 125C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\timsort\.npmignore133213761367129193 0
 146C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\terser\node_modules\commander\Readme.md133213761371933185 0
 118C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\htmlparser2133213761378640197 1
@@ -71,7 +71,7 @@
 113C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@babel133213761347148539 1
 136C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\fs\lib\browser.js.map133213761379169562 0
 124C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\yaml\parse-cst.js133213761382021232 0
-107C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src\style.css133210305714922250 0
+107C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\src\style.css133214673674073075 0
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\HU.js133213761402235943 0
 132C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\msgpackr\dist\test.js.map133213761386226443 0
 119C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\mdn-data\css133213761382735100 1
@@ -1033,7 +1033,7 @@
 131C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\safe-buffer\package.json133213761369010456 0
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\LK.js133213761405290049 0
 122C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\lmdb\index.d.ts133213761393736611 0
-123C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\Frontend.59712999.js.map133214665165625429 0
+123C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\Frontend.59712999.js.map133214673674053123 0
 129C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\tslib\modules\index.js133213761369272580 0
 149C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\terser\node_modules\commander\CHANGELOG.md133213761370687032 0
 133C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\tslib\modules\package.json133213761372861871 0
@@ -2727,7 +2727,7 @@
 147C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\codeframe\test\codeframe.test.js133213761382564492 0
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\BW.js133213761390074660 0
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\CA.js133213761390393580 0
-119C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\Frontend.59712999.js133214665165229990 0
+119C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\Frontend.59712999.js133214673674043114 0
 134C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\events\lib\index.js133213761373827212 0
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\CF.js133213761390635414 0
 138C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\caniuse-lite\data\regions\CG.js133213761390655468 0
@@ -3941,7 +3941,7 @@
 189C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\package-fallback\package.json133213761390710556 0
 191C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\package-browser-exclude\main.js133213761387526612 0
 196C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\package-browser-exclude\package.json133213761390675421 0
-120C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\index.cab1be00.js.map133214665165625429 0
+120C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\index.cab1be00.js.map133214673674063065 0
 188C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\package-browser-alias\bar.js133213761378450498 0
 192C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\package-browser-alias\browser.js133213761379231728 0
 188C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\package-browser-alias\foo.js133213761382705628 0
@@ -4252,5 +4252,5 @@
 118C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\.bin\terser133213761417178570 0
 122C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\.bin\terser.cmd133213761417178570 0
 122C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\node_modules\.bin\terser.ps1133213761417178570 0
-116C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\index.cab1be00.js133214665165194804 0
-109C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\index.html133214665167376245 0
+116C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\index.cab1be00.js133214673674053123 0
+109C:\Users\Maik\Documents\GitHub\Schoolstuff-AWS-22.10-MR\Programming Languages\Quizzz\Frontend\dist\index.html133214673941276853 0
