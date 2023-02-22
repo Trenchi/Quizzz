@@ -22,4 +22,4 @@ async function connectAndQuery(query, params) {
   }
 }
 
-module.exports = { connectToDatabase, connectAndQuery };
+module.exports = { connectToDatabase, connectAndQuery, pgClient };
