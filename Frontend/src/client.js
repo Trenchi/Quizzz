@@ -1,19 +1,5 @@
 const quizId = 1; // Hier die Quiz-ID einfügen
 
-// function getData() {
-//   fetch(`http://localhost:4000/quiz/${quizId}`)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // Hier den Code einfügen, um die Daten auf der Frontend-Seite anzuzeigen
-//       const quizData = JSON.stringify(data); // Daten als JSON-String konvertieren
-//       const container = document.getElementById("quiz-container");
-//       container.textContent = quizData; // Daten in einem HTML-Element als Text anzeigen
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//     });
-// }
-
 function getData() {
   fetch("http://localhost:4000/question/random")
     .then((response) => response.json())
@@ -21,9 +7,25 @@ function getData() {
       const dataContainer = document.getElementById("quiz-container");
       dataContainer.innerHTML = "";
       data.forEach((item) => {
-        const listItem = document.createElement("p");
-        listItem.innerHTML = item.question;
-        dataContainer.appendChild(listItem);
+        const listQuestion = document.createElement("p");
+        listQuestion.innerHTML = item.question;
+        dataContainer.appendChild(listQuestion);
+
+        const listAnswer1 = document.createElement("p");
+        listAnswer1.innerHTML = item.answer_1;
+        dataContainer.appendChild(listAnswer1);
+
+        const listAnswer2 = document.createElement("p");
+        listAnswer2.innerHTML = item.answer_2;
+        dataContainer.appendChild(listAnswer2);
+
+        const listAnswer3 = document.createElement("p");
+        listAnswer3.innerHTML = item.answer_3;
+        dataContainer.appendChild(listAnswer3);
+
+        const listAnswer4 = document.createElement("p");
+        listAnswer4.innerHTML = item.answer_4;
+        dataContainer.appendChild(listAnswer4);
       });
     })
     .catch((error) => console.error(error));
