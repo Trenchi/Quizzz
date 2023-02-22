@@ -1,0 +1,56 @@
+html {
+    background-color: rgb(178, 243, 221);
+  
+  }
+  
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  
+  
+  .circle {
+    text-align: center;
+  }
+  
+  .circle {
+    width: 350px;
+    height: 350px;
+    border-radius: 60%;
+    background-color: rgb(98, 170, 142);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  p {
+    font-size: 34px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #52cece;
+    border: none;
+    color: rgb(24, 8, 8);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  button {
+    transition-duration: 0.4s;
+  }
+  
+  button:hover {
+    background-color: #3ace3f;
+    /* Green */
+    color: rgb(37, 230, 165);
+  }

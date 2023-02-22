@@ -11,15 +11,9 @@ class Question {
   }
 }
 
-async function getQuestionDB(questionsTotal) {
-  const res = await pgClient.query("SELECT * FROM quizzz WHERE id = $1", [questionsTotal]);
+async function getQuestionDB() {
+  const res = await pgClient.query("SELECT * FROM quizzz ORDER BY random() LIMIT 1;");
   console.log(res.rows[0]);
   return res.rows.map(g => new Question(g))
 }
-
-async function countQuestions() {
-  const res = await pgClient.query("SELECT COUNT(id) FROM quizzz;");
-  return parseInt(res.rows[0].count);
-}
-
-module.exports = { getQuestionDB, countQuestions };
+module.exports = { getQuestionDB };
