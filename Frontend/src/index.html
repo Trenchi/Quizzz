@@ -1,11 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Quiz App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzz</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="style.css">
+    
+
+
 </head>
+   
 <body>
-  <div id="quiz-container"></div>
-  <script src="client.js"></script>
-  <script> getData(); </script>
+    
+   
+    <div>
+        <div class="uk-text-center uk-card-body">
+        <p class.uk-text-bolder="uk-h4">Test your knowledge in this ultimate and merciless quiz app that will put the last bit of sanity to the test!!!!</p>
+    </div>  
+
+    <div class="uk-animation-toggle" tabindex="0">
+        <div class="uk-card uk-card-default uk-card-body uk-animation-scale-up">
+            <p class="uk-text-center">Start that QuiZZZ</p>
+        </div>
+    </div>
+
+      <div class="container">
+        <div class="circle">
+          <p id ="question">Hier steht die Frage</p>
+      </div>
+
+      <style>
+
+      </style>
+
+<table class="uk-table uk-table-justify uk-table-divider">
+  <thead>
+      <tr>
+          <th class="uk-width-small">Antworten</th>
+      </tr> 
+  <tbody>
+      <tr>
+          <td></td>
+          <td><button class="uk-button uk-button-default" type="button" id="answer_1">Answer 1</button></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><button class="uk-button uk-button-default" type="button" id="answer_2">Answer 2</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button class="uk-button uk-button-default" type="button" id="answer_3">Answer 3</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button class="uk-button uk-button-default" type="button" id="answer_4">Answer 4</button></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+    
+      <!--<div class="uk-grid uk-child-width-1-2 uk-child-width-1-2" uk-grid>
+        <div>
+          <div class="uk-card uk-card-default uk-card-body uk-text-center">
+            <h5 class="uk-card-title">Antwort 1</h5>
+            <p>Accio</p>
+          </div>
+        </div>
+        <div>
+          <div class="uk-card uk-card-default uk-card-body uk-text-center">
+            <h5 class="uk-card-title">Antwort 2</h5>
+            <p>Tergeo	</p>
+          </div>
+        </div>
+        <div>
+          <div class="uk-card uk-card-default uk-card-body uk-text-center">
+            <h5 class="uk-card-title">Antwort 3</h5>
+            <p>Aparecium</p>
+          </div>
+        </div>
+        <div>
+          <div class="uk-card uk-card-default uk-card-body uk-text-center">
+            <h5 class="uk-card-title">Antwort 4</h5>
+            <p>Alohomora</p>
+          </div>
+        </div>
+      </div>
+      
+-->
+
+
+
 </body>
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit-icons.min.js"></script>
 </html>
