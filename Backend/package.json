@@ -4,9 +4,7 @@
   "description": "Backend Server",
   "main": "index.js",
   "scripts": {
-    "server": "supervisor dist/index.js",
-    "watch": "parcel watch src/index.ts",
-    "build": "parcel build src/index.ts"
+    "server": "supervisor server.js"
   },
   "keywords": [],
   "author": "",
