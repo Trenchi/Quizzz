@@ -1,9 +1,12 @@
-const { Question, getQuestionDB, countQuestions } = require("../models/questions");
+const { Question, getQuestionDB, countQuestions } = require("../models/question");
 
 async function getRandomQuestion(request, response) {
 
-  const question = await getQuestionDB();
-  response.send(question[0]);
+  const questions = await getQuestionDB();
+  const question = questions[0];
+  await question.getAnswers()
+
+  response.send(question.asJsonForQuestion());
 }
 
 module.exports = { getRandomQuestion };
