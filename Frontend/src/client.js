@@ -46,35 +46,47 @@ function check_answer_backend(id) {
     function check_answers(res) {
     console.log(res);
     if (res[0].isCorrect === true) {
-      document.getElementById("answer_1").style.color = "green";
+      document.getElementById("answer_1").style.backgroundColor = "green";
       // console.log("answer1 is correct");
     } else {
       // console.log("answer1 is wrong");
-      document.getElementById("answer_1").style.color = "red";
+      document.getElementById("answer_1").style.backgroundColor = "red";
     }
     if (res[1].isCorrect === true) {
-      document.getElementById("answer_2").style.color = "green";
+      document.getElementById("answer_2").style.backgroundColor= "green";
       // console.log("answer1 is correct");
     } else {
       // console.log("answer1 is wrong");
-      document.getElementById("answer_2").style.color = "red";
+      document.getElementById("answer_2").style.backgroundColor = "red";
     }
     if (res[2].isCorrect === true) {
-      document.getElementById("answer_3").style.color = "green";
+      document.getElementById("answer_3").style.backgroundColor= "green";
       // console.log("answer1 is correct");
     } else {
       // console.log("answer1 is wrong");
-      document.getElementById("answer_3").style.color = "red";
+      document.getElementById("answer_3").style.backgroundColor= "red";
     }
     if (res[3].isCorrect === true) {
-      document.getElementById("answer_4").style.color = "green";
+      document.getElementById("answer_4").style.backgroundColor= "green";
       // console.log("answer1 is correct");
     } else {
       // console.log("answer1 is wrong");
-      document.getElementById("answer_4").style.color = "red";
+      document.getElementById("answer_4").style.backgroundColor = "red";
     }
   }
+}
+ 
+// ############### Next Question + Reset Button Color ##################
 
+function load_new_question_and_reset_colors() {
+  resetAnswers();
+  getData();
+}
+ 
 
-  
+function resetAnswers() {
+  document.getElementById("answer_1").style.backgroundColor = "";
+  document.getElementById("answer_2").style.backgroundColor = "";
+  document.getElementById("answer_3").style.backgroundColor = "";
+  document.getElementById("answer_4").style.backgroundColor = "";
 }
