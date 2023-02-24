@@ -25,7 +25,7 @@
 
         <div class="uk-animation-toggle" tabindex="0">
             <div class="uk-card uk-card-default uk-card-body uk-animation-scale-up">
-                <p class="uk-text-center">Start that QuiZZZ</p>
+                <p class="uk-text-center" onclick="PLACEHOLDER">Start that QuiZZZ</p>
             </div>
         </div>
 
@@ -35,15 +35,22 @@
             </div>
 
             <div uk-grid>
-                <div class="uk-width-1">
+                <div class="uk-width-1" id="resetButtons">
                     <button
-                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom" id="answer_1"></button>        <!-- Answer 1 --> 
+                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom" 
+                        onclick="check_answer_backend(id);" id="answer_1"></button>                                 <!-- Answer 1 --> 
                     <button
-                        class="uk-button.uk-button-text .uk-width-1-3.uk-animation-shake .uk-margin-small-bottom" id="answer_2"></button>       <!-- Answer 2 --> 
+                        class="uk-button.uk-button-text .uk-width-1-3.uk-animation-shake .uk-margin-small-bottom" 
+                        onclick="check_answer_backend(id)" id="answer_2"></button>                                  <!-- Answer 2 --> 
                     <button
-                        class="uk-button.uk-button-text .uk-width-1-3.uk-animation-shake .uk-margin-small-bottom" id="answer_3"></button>       <!-- Answer 3 --> 
+                        class="uk-button.uk-button-text .uk-width-1-3.uk-animation-shake .uk-margin-small-bottom" 
+                        onclick="check_answer_backend(id)" id="answer_3"></button>                                  <!-- Answer 3 --> 
                     <button
-                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom" id="answer_4"></button>        <!-- Answer 4 --> 
+                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom" 
+                        onclick="check_answer_backend(id)" id="answer_4"></button>                                  <!-- Answer 4 --> 
+                    <button
+                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom"  
+                        onclick="load_new_question_and_reset_colors()" type="button">Next Question</button>        <!-- Next Question --> 
                 </div>
 
 </body>

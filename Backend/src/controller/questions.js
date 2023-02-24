@@ -1,4 +1,4 @@
-const { Question, getQuestionDB, countQuestions } = require("../models/question");
+const { Question, getQuestionDB } = require("../models/question");
 
 async function getRandomQuestion(request, response) {
 
