@@ -26,7 +26,7 @@ class Question {
 
 async function getQuestionDB() {
   const res = await pgClient.query("SELECT * FROM questions ORDER BY random() LIMIT 1;");
-  console.log(res.rows[0]);
+  // console.log(res.rows[0]);
   return res.rows.map(g => new Question(g))
 }
 

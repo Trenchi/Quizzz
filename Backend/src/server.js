@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 app.get("/question/random", getRandomQuestion);
-app.post('/check_answer', checkAnswer);
+app.post('/question/check_answer', checkAnswer);
 
 // async (req, res) => {
 //   const id = req.params.id;
