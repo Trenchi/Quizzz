@@ -19,6 +19,12 @@ class Answer {
             text: this.text
         }
     }
+    asJsonForAnswer() {
+        return {
+            id: this.id,
+            isCorrect: this.isCorrect
+        }
+    }
 }
 
 async function getAnswersForQuestion(questionId) {
@@ -27,4 +33,10 @@ async function getAnswersForQuestion(questionId) {
     return res.rows.map(g => new Answer(g))
 }
 
-module.exports = { Answer, getAnswersForQuestion };
+async function getSolutionForQuestion(questionId) {
+    const res = await pgClient.query("SELECT * FROM answers WHERE question_id = $1;", [questionId]);
+
+    return res.rows.map(g => new Answer(g))
+}
+
+module.exports = { Answer, getAnswersForQuestion, getSolutionForQuestion };
