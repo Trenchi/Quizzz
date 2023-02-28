@@ -1,7 +1,7 @@
-// #################### new Question / GET #############################################
-
-let random_array = ["a","b","c","d"];
+// #################### Variable #######################################################
 let current_answers_total = 0;
+
+// #################### new Question / GET #############################################
 
 
 function getData() {
@@ -13,23 +13,28 @@ function getData() {
     current_answers_total = 0;
 
     function create_buttons(quiz_data){
-      console.log(quiz_data);
       
       current_id = quiz_data.id;
 
       document.getElementById("question").innerHTML = quiz_data.question;
 
-      const container = document.getElementById("buttons");
+      const container = document.getElementById("answer_buttons");
       quiz_data.answers.forEach((answer, i) => 
       {
         const button = document.createElement('button');
         button.id = "answer_" + (i + 1);
-        button.addEventListener("click", function bla(id) {check_answer_backend(id)})
-        console.log(answer.text)
+        button.addEventListener("click", function logQuestion(id) {check_answer_backend(id)})
         button.textContent = answer.text;
         container.appendChild(button);
         current_answers_total++;
-      })}
+      })
+    const containerNextButton = document.getElementById("next_button");
+    const nextButton = document.createElement('button');
+    nextButton.id ="next";
+    nextButton.addEventListener("click", function next() {load_new_question_and_reset_colors()})
+    nextButton.textContent = "Next Question";
+    containerNextButton.appendChild(nextButton);
+    }
 }
 getData();
 
@@ -58,8 +63,6 @@ function check_answer_backend(id) {
     res.forEach((answer) => {
       for (let i = 1; i < res.length + 1; i++) {
       const index_id = "answer_" + i;
-      console.log(answer.tex)
-      console.log(document.getElementById(index_id).innerHTML)
       if (String(answer.text) === document.getElementById(index_id).innerHTML) {
         if (answer.isCorrect === true) {
           document.getElementById(index_id).style.backgroundColor = "green";
@@ -84,4 +87,5 @@ function resetAnswers() { // bitte iterieren
   for (let i = 1; i < current_answers_total + 1; i++) {
   document.getElementById("answer_" + i).remove();
   }
+  document.getElementById("next").remove();
 }

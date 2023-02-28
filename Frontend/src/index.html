@@ -15,46 +15,11 @@
 
 <body>
 
+    <div id="question-container">
+        <h2 id="question"></h2>
+        <div id="answer_buttons"></div>
     </div>
-
-    <div>
-        <div class="uk-text-center uk-card-body">
-            <p class.uk-text-bolder="uk-h4">Test your knowledge in this ultimate and merciless quiz app that will put
-                the last bit of sanity to the test!!!!</p>
-        </div>
-
-        <div class="uk-animation-toggle" tabindex="0">
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-up">
-                <p class="uk-text-center" onclick="PLACEHOLDER">Start that QuiZZZ</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="circle">
-                <p id="question"></p> <!-- Question -->
-            </div>
-
-            <div uk-grid>
-                <div class="uk-width-1" id="resetButtons">
-
-                    <div id="buttons"></div>
-                    <!-- <button
-                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom" 
-                        onclick="check_answer_backend(id);" id="answer_1"></button>                                 Answer 1 --> 
-                    <!-- <button
-                        class="uk-button.uk-button-text .uk-width-1-3.uk-animation-shake .uk-margin-small-bottom" 
-                        onclick="check_answer_backend(id)" id="answer_2"></button>                                  Answer 2  -->
-                    <!-- <button
-                        class="uk-button.uk-button-text .uk-width-1-3.uk-animation-shake .uk-margin-small-bottom" 
-                        onclick="check_answer_backend(id)" id="answer_3"></button>                                  Answer 3  -->
-                    <!-- <button
-                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom" 
-                        onclick="check_answer_backend(id)" id="answer_4"></button>                                  Answer 4  -->
-                    <button
-                        class="uk-button.uk-button-text.uk-width-1-2.uk-animation-shake .uk-margin-small-bottom"  
-                        onclick="load_new_question_and_reset_colors()" type="button">Next Question</button>        <!-- Next Question --> 
-                </div>
-
+    <div id="next_button"></div>
 
 </body>
 
