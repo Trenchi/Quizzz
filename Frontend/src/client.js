@@ -10,31 +10,40 @@ function getData() {
     .then((json) => create_buttons(json))
     .catch((error) => console.log(error));
 
-    current_answers_total = 0;
+  current_answers_total = 0;
 
-    function create_buttons(quiz_data){
-      
-      current_id = quiz_data.id;
+  function create_buttons(quiz_data) {
 
-      document.getElementById("question").innerHTML = quiz_data.question;
+    current_id = quiz_data.id;
 
-      const container = document.getElementById("answer_buttons");
-      quiz_data.answers.forEach((answer, i) => 
-      {
-        const button = document.createElement('button');
-        button.id = "answer_" + (i + 1);
-        button.addEventListener("click", function logQuestion(id) {check_answer_backend(id)})
-        button.textContent = answer.text;
-        container.appendChild(button);
-        current_answers_total++;
-      })
+    document.getElementById("question").innerHTML = quiz_data.question;
+
+    const container = document.getElementById("answer_buttons");
+    quiz_data.answers.forEach((answer, i) => {
+      const button = document.createElement('button');
+      button.id = "answer_" + (i + 1);
+      button.addEventListener("click", function logQuestion(id) { check_answer_backend(id) })
+      button.textContent = answer.text;
+      container.appendChild(button);
+      current_answers_total++;
+
+      const lineBreak = document.createElement("br"); // Add BR
+      container.appendChild(lineBreak);               // Add BR
+
+      // Scale button font-size
+      // const buttonWidth = button.offsetWidth;
+      // const textWidth = button.scrollWidth;
+      // const scale = Math.min(1, buttonWidth / textWidth);
+      // const fontSize = parseInt(window.getComputedStyle(button).getPropertyValue('font-size'));
+      // button.style.fontSize = (fontSize * scale) + "px";
+    })
     const containerNextButton = document.getElementById("next_button");
     const nextButton = document.createElement('button');
-    nextButton.id ="next";
-    nextButton.addEventListener("click", function next() {load_new_question_and_reset_colors()})
+    nextButton.id = "next";
+    nextButton.addEventListener("click", function next() { load_new_question_and_reset_colors() })
     nextButton.textContent = "Next Question";
     containerNextButton.appendChild(nextButton);
-    }
+  }
 }
 getData();
 
@@ -62,15 +71,15 @@ function check_answer_backend(id) {
   function check_answers(res) {
     res.forEach((answer) => {
       for (let i = 1; i < res.length + 1; i++) {
-      const index_id = "answer_" + i;
-      if (String(answer.text) === document.getElementById(index_id).innerHTML) {
-        if (answer.isCorrect === true) {
-          document.getElementById(index_id).style.backgroundColor = "green";
-        } else {
-          document.getElementById(index_id).style.backgroundColor = "red";
+        const index_id = "answer_" + i;
+        if (String(answer.text) === document.getElementById(index_id).innerHTML) {
+          if (answer.isCorrect === true) {
+            document.getElementById(index_id).style.backgroundColor = "green";
+          } else {
+            document.getElementById(index_id).style.backgroundColor = "red";
+          }
         }
       }
-    }
     })
   }
 }
@@ -85,7 +94,9 @@ function load_new_question_and_reset_colors() {
 
 function resetAnswers() { // bitte iterieren
   for (let i = 1; i < current_answers_total + 1; i++) {
-  document.getElementById("answer_" + i).remove();
+    document.getElementById("answer_" + i).remove();
+    const br = document.querySelector('#br br');
+    br.remove();
   }
   document.getElementById("next").remove();
 }
