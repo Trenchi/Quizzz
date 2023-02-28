@@ -13,6 +13,9 @@ class Question {
 
   async getAnswers() {
     this.answers = await getAnswersForQuestion(this.id)
+    // console.log(this.answers)
+    this.answers = this.answers.sort((a, b) => 0.5 - Math.random());
+    // console.log(this.answers)
   }
 
   asJsonForQuestion() {

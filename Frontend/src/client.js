@@ -1,29 +1,45 @@
-let current_id = 1
+// #################### Variable #######################################################
+let current_answers_total = 0;
+
+// #################### new Question / GET #############################################
 
 
 function getData() {
   fetch("http://localhost:4000/question/random")
     .then((response) => response.json())
-    .then((json) => fill_text_area(json))
+    .then((json) => create_buttons(json))
     .catch((error) => console.log(error));
 
+    current_answers_total = 0;
 
+    function create_buttons(quiz_data){
+      
+      current_id = quiz_data.id;
 
-  function fill_text_area(quiz_data) {
+      document.getElementById("question").innerHTML = quiz_data.question;
 
-    current_id = quiz_data.id;
-
-    document.getElementById("question").innerHTML = quiz_data.question;
-    document.getElementById("answer_1").innerHTML = quiz_data.answers[0].text;
-    document.getElementById("answer_2").innerHTML = quiz_data.answers[1].text;
-    document.getElementById("answer_3").innerHTML = quiz_data.answers[2].text;
-    document.getElementById("answer_4").innerHTML = quiz_data.answers[3].text;
-  }
+      const container = document.getElementById("answer_buttons");
+      quiz_data.answers.forEach((answer, i) => 
+      {
+        const button = document.createElement('button');
+        button.id = "answer_" + (i + 1);
+        button.addEventListener("click", function logQuestion(id) {check_answer_backend(id)})
+        button.textContent = answer.text;
+        container.appendChild(button);
+        current_answers_total++;
+      })
+    const containerNextButton = document.getElementById("next_button");
+    const nextButton = document.createElement('button');
+    nextButton.id ="next";
+    nextButton.addEventListener("click", function next() {load_new_question_and_reset_colors()})
+    nextButton.textContent = "Next Question";
+    containerNextButton.appendChild(nextButton);
+    }
 }
 getData();
 
 
-// #################### POST #############################################
+// #################### check Answer / POST #############################################
 
 function check_answer_backend(id) {
   id = current_id
@@ -43,50 +59,33 @@ function check_answer_backend(id) {
     .catch((error) => console.log(error));
 
 
-    function check_answers(res) {
-    console.log(res);
-    if (res[0].isCorrect === true) {
-      document.getElementById("answer_1").style.backgroundColor = "green";
-      // console.log("answer1 is correct");
-    } else {
-      // console.log("answer1 is wrong");
-      document.getElementById("answer_1").style.backgroundColor = "red";
+  function check_answers(res) {
+    res.forEach((answer) => {
+      for (let i = 1; i < res.length + 1; i++) {
+      const index_id = "answer_" + i;
+      if (String(answer.text) === document.getElementById(index_id).innerHTML) {
+        if (answer.isCorrect === true) {
+          document.getElementById(index_id).style.backgroundColor = "green";
+        } else {
+          document.getElementById(index_id).style.backgroundColor = "red";
+        }
+      }
     }
-    if (res[1].isCorrect === true) {
-      document.getElementById("answer_2").style.backgroundColor= "green";
-      // console.log("answer1 is correct");
-    } else {
-      // console.log("answer1 is wrong");
-      document.getElementById("answer_2").style.backgroundColor = "red";
-    }
-    if (res[2].isCorrect === true) {
-      document.getElementById("answer_3").style.backgroundColor= "green";
-      // console.log("answer1 is correct");
-    } else {
-      // console.log("answer1 is wrong");
-      document.getElementById("answer_3").style.backgroundColor= "red";
-    }
-    if (res[3].isCorrect === true) {
-      document.getElementById("answer_4").style.backgroundColor= "green";
-      // console.log("answer1 is correct");
-    } else {
-      // console.log("answer1 is wrong");
-      document.getElementById("answer_4").style.backgroundColor = "red";
-    }
+    })
   }
 }
- 
+
 // ############### Next Question + Reset Button Color ##################
 
 function load_new_question_and_reset_colors() {
   resetAnswers();
   getData();
 }
- 
 
-function resetAnswers() {
-  document.getElementById("answer_1").style.backgroundColor = "";
-  document.getElementById("answer_2").style.backgroundColor = "";
-  document.getElementById("answer_3").style.backgroundColor = "";
-  document.getElementById("answer_4").style.backgroundColor = "";
+
+function resetAnswers() { // bitte iterieren
+  for (let i = 1; i < current_answers_total + 1; i++) {
+  document.getElementById("answer_" + i).remove();
+  }
+  document.getElementById("next").remove();
 }
