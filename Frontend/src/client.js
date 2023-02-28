@@ -1,6 +1,8 @@
 // #################### new Question / GET #############################################
 
 let random_array = ["a","b","c","d"];
+let current_answers_total = 0;
+
 
 function getData() {
   fetch("http://localhost:4000/question/random")
@@ -8,7 +10,7 @@ function getData() {
     .then((json) => create_buttons(json))
     .catch((error) => console.log(error));
 
-
+    current_answers_total = 0;
 
     function create_buttons(quiz_data){
       console.log(quiz_data);
@@ -26,25 +28,8 @@ function getData() {
         console.log(answer.text)
         button.textContent = answer.text;
         container.appendChild(button);
+        current_answers_total++;
       })}
-
-      // array.forEach((answer, i) => 
-      // {
-      //   const button = document.createElement('button');
-      //   button.textContent = answer;
-      //   container.appendChild(button);
-      // })}   
-
-  // function fill_text_area(quiz_data) {
-
-  //   current_id = quiz_data.id;
-
-  //   document.getElementById("question").innerHTML = quiz_data.question;
-  //   // document.getElementById("answer_1").innerHTML = quiz_data.answers[0].text;
-  //   // document.getElementById("answer_2").innerHTML = quiz_data.answers[1].text;
-  //   // document.getElementById("answer_3").innerHTML = quiz_data.answers[2].text;
-  //   // document.getElementById("answer_4").innerHTML = quiz_data.answers[3].text;
-  // }
 }
 getData();
 
@@ -96,8 +81,7 @@ function load_new_question_and_reset_colors() {
 
 
 function resetAnswers() { // bitte iterieren
-  document.getElementById("answer_1").remove();
-  document.getElementById("answer_2").remove();
-  document.getElementById("answer_3").remove();
-  document.getElementById("answer_4").remove();
+  for (let i = 1; i < current_answers_total + 1; i++) {
+  document.getElementById("answer_" + i).remove();
+  }
 }
