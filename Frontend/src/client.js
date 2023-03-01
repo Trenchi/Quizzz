@@ -116,6 +116,7 @@ function check_answer_backend() {
     res.forEach((answer) => {
       for (let i = 1; i < res.length + 1; i++) {
         const index_id = "answer_" + i;
+
         if (
           String(answer.text) === document.getElementById(index_id).innerHTML
         ) {
@@ -133,6 +134,7 @@ function check_answer_backend() {
             } else {
               console.log("wrong");
             }
+
           } else {
             document.getElementById(index_id).style.backgroundColor = "red";
           }
