@@ -2,7 +2,7 @@
 
 let current_id = 1;
 let current_answers_total = 0;
-let dont_ask = []; //
+const dont_ask = [0]; //
 let user_answer = "";
 
 // ###################### new Question / POST ########################################################
@@ -27,23 +27,29 @@ function getNextQuestion() {
 
   function create(quiz_data) {
     console.log(dont_ask);
+    if (document.getElementById("answer_1")) {
     resetAnswers();
+    deleteTimer();
+  };
     create_buttons(quiz_data);
+    countdown();
   }
 }
 
 // #################### new Question / GET #############################################
 
-function getData() {
-  fetch("http://localhost:4000/question/random")
-    .then((response) => response.json())
-    .then((json) => create(json))
-    .catch((error) => console.log(error));
+// function getData() {
+//   fetch("http://localhost:4000/question/random")
+//     .then((response) => response.json())
+//     .then((json) => create(json))
+//     .catch((error) => console.log(error));
 
-  function create(quiz_data) {
-    create_buttons(quiz_data);
-  }
-}
+//   function create(quiz_data) {
+//     create_buttons(quiz_data);
+//   }
+// }
+
+// ################################## create Buttons #############################
 
 function create_buttons(quiz_data) {
   current_answers_total = 0;
@@ -88,7 +94,16 @@ function create_buttons(quiz_data) {
   containerNextButton.appendChild(nextButton);
 }
 
-getData();
+// ############### Next Question + Reset Button Color ##################
+
+function resetAnswers() {
+  for (let i = 1; i < current_answers_total + 1; i++) {
+    document.getElementById("answer_" + i).remove();
+    const br = document.querySelector('#br br');
+    br.remove();
+  }
+  document.getElementById("next").remove();
+}
 
 // #################### check Answer / POST #############################################
 
@@ -144,18 +159,58 @@ function check_answer_backend() {
   }
 }
 
-// ############### Next Question + Reset Button Color ##################
+// ############### Progress Timer Bar ##################
 
-function load_new_question_and_reset_colors() {
-  resetAnswers();
-  getData();
-}
+/*
+ *  Creates a progressbar.
+ *  @param id the id of the div we want to transform in a progressbar
+ *  @param duration the duration of the timer example: '10s'
+ *  @param callback, optional function which is called when the progressbar reaches 0.
+ */
+function createProgressbar(id, duration, callback) {
+  // We select the div that we want to turn into a progressbar
+  const progressbar = document.getElementById(id);
+  progressbar.className = 'progressbar';
 
-function resetAnswers() {
-  for (let i = 1; i < current_answers_total + 1; i++) {
-    document.getElementById("answer_" + i).remove();
-    const br = document.querySelector('#br br');
-    br.remove();
+  // We create the div that changes width to show progress
+  const progressbarinner = document.createElement('div');
+  progressbarinner.className = 'inner';
+
+  // Now we set the animation parameters
+  progressbarinner.style.animationDuration = duration;
+
+  // Eventually couple a callback
+  if (typeof (callback) === 'function') {
+    progressbarinner.addEventListener('animationend', callback);
   }
-  document.getElementById("next").remove();
+
+  // Append the progressbar to the main progressbardiv
+  progressbar.appendChild(progressbarinner);
+
+  // When everything is set up we start the animation
+  progressbarinner.style.animationPlayState = 'running';
 }
+
+function countdown() {
+  createProgressbar('progressbar1', '5s', function () {
+    getNextQuestion();
+    console.log("Hier Next Question Button anbinden!")
+    // alert('20s progressbar is finished!');
+  });
+};
+
+
+function deleteTimer() {
+  let element = document.getElementById('progressbar1');
+  element.querySelectorAll('*').forEach(n => n.remove());
+  // countdown();
+}
+
+
+// #######################################################
+// ############## MAIN ###################################
+// #######################################################
+
+getNextQuestion();
+// getData();
+// countdown();
