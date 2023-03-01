@@ -1,8 +1,8 @@
 const { pgClient } = require("../services/database");
-const { getAnswersForQuestion} = require("./answer")
+const { getAnswersForQuestion } = require("./answer")
 
 class Question {
-  id; 
+  id;
   question;
   answers;
 
@@ -33,4 +33,26 @@ async function getQuestionDB() {
   return res.rows.map(g => new Question(g))
 }
 
-module.exports = { getQuestionDB };
+async function postRandomQuestionDB(array_id) {
+  let where_id = ""
+  console.log(array_id)
+  array_id.forEach((id, i) => {
+    console.log(id);
+    console.log(i);
+    where_id += " id <> ";
+    where_id += id;
+    console.log(where_id);
+    if (i!= array_id.length - 1) {
+      where_id += " AND "
+    }
+    console.log(where_id)
+  })
+  let query = "SELECT * FROM questions WHERE" + where_id + " ORDER BY random() LIMIT 1;"
+
+
+  const res = await pgClient.query(query);
+  console.log(res.rows[0]);
+  return res.rows.map(g => new Question(g))
+}
+
+module.exports = { getQuestionDB, postRandomQuestionDB };
