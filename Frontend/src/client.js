@@ -28,9 +28,9 @@ function getNextQuestion() {
   function create(quiz_data) {
     console.log(dont_ask);
     if (document.getElementById("answer_1")) {
-    resetAnswers();
-    deleteTimer();
-  };
+      resetAnswers();
+      deleteTimer();
+    };
     create_buttons(quiz_data);
     countdown();
   }
@@ -206,6 +206,12 @@ function deleteTimer() {
   // countdown();
 }
 
+// ################### Play Sound ########################
+
+function playSound() {
+  let sound = new Audio('/Frontend/src/content/audio/wav/mixkit-retro-game-notification-212_1.wav');
+  sound.play();
+}
 
 // #######################################################
 // ############## MAIN ###################################
