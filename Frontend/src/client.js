@@ -2,7 +2,7 @@
 
 let current_id = 1;
 let current_answers_total = 0;
-let dont_ask = [0]; //
+const dont_ask = [0]; //
 let user_answer = "";
 
 // ###################### new Question / POST ########################################################
@@ -169,11 +169,11 @@ function check_answer_backend() {
  */
 function createProgressbar(id, duration, callback) {
   // We select the div that we want to turn into a progressbar
-  var progressbar = document.getElementById(id);
+  const progressbar = document.getElementById(id);
   progressbar.className = 'progressbar';
 
   // We create the div that changes width to show progress
-  var progressbarinner = document.createElement('div');
+  const progressbarinner = document.createElement('div');
   progressbarinner.className = 'inner';
 
   // Now we set the animation parameters
