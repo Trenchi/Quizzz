@@ -66,6 +66,16 @@ function create_buttons(quiz_data) {
     button.textContent = answer.text;
     container.appendChild(button);
     current_answers_total++;
+
+    const lineBreak = document.createElement("br"); // Add BR
+    container.appendChild(lineBreak);               // Add BR
+
+    // Scale button font-size
+    // const buttonWidth = button.offsetWidth;
+    // const textWidth = button.scrollWidth;
+    // const scale = Math.min(1, buttonWidth / textWidth);
+    // const fontSize = parseInt(window.getComputedStyle(button).getPropertyValue('font-size'));
+    // button.style.fontSize = (fontSize * scale) + "px";
   });
 
   const containerNextButton = document.getElementById("next_button");
@@ -113,13 +123,13 @@ function check_answer_backend() {
             document.getElementById(index_id).style.backgroundColor = "green";
             // console.log(user_answer);
             // console.log(answer);
-            
+
             if (user_answer == answer.text) {
               console.log("correct");
               // console.log(answer.questionId);
               dont_ask.push(answer.questionId);
               console.log(dont_ask);
-              
+
             } else {
               console.log("wrong");
             }
@@ -142,6 +152,8 @@ function load_new_question_and_reset_colors() {
 function resetAnswers() {
   for (let i = 1; i < current_answers_total + 1; i++) {
     document.getElementById("answer_" + i).remove();
+    const br = document.querySelector('#br br');
+    br.remove();
   }
   document.getElementById("next").remove();
 }
