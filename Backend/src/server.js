@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { getRandomQuestion, postRandomQuestion } = require("./controller/questions");
+const {  postRandomQuestion } = require("./controller/questions"); // getRandomQuestion,
 const { checkAnswer } = require("./controller/answers");
 const { connectToDatabase, connectAndQuery } = require('./services/database');
 
@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get("/question/random", getRandomQuestion);
+// app.get("/question/random", getRandomQuestion);
 app.post("/question/random", postRandomQuestion)
 app.post('/question/check_answer', checkAnswer);
 

@@ -1,8 +1,8 @@
-// #################### Variable #######################################################
+// #################### Variables #######################################################
 
 let current_id = 1;
 let current_answers_total = 0;
-let dont_ask = []; //
+let dont_ask = [0];
 let user_answer = "";
 
 // ###################### new Question / POST ########################################################
@@ -110,8 +110,6 @@ function check_answer_backend() {
     .catch((error) => console.log(error));
 
   function check_answers(res) {
-
-
 
     res.forEach((answer) => {
       for (let i = 1; i < res.length + 1; i++) {
