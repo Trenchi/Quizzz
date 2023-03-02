@@ -28,23 +28,32 @@ button:hover {
 }
 
 #next_button {
-	margin-top: 5%;
+	margin-top: 0;
 }
 
 #content {
 	text-align: center;
+    width: 860px;
+}
+
+#br {
+    width: 100%;
+}
+
+#next {
+    margin-top: 0;
 }
 
 /* ########## Progress Timer Bar ########## */
 
 .progressbar {
-    width: 80%;
-    margin: 25px auto;
+    width: 497px;
+    margin: 25px auto 0 auto;
     border: solid 1px #000;
 }
 
 .progressbar .inner {
-    height: 15px;
+    height: 10px;
     animation: progressbar-countdown;
     /* Placeholder, this will be updated using javascript */
     animation-duration: 40s;
@@ -56,6 +65,8 @@ button:hover {
     animation-play-state: paused;
     /* We want a linear animation, ease-out is standard */
     animation-timing-function: linear;
+
+    margin: auto;
 }
 
 @keyframes progressbar-countdown {

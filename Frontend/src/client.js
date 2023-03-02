@@ -28,9 +28,9 @@ function getNextQuestion() {
   function create(quiz_data) {
     console.log(dont_ask);
     if (document.getElementById("answer_1")) {
-    resetAnswers();
-    deleteTimer();
-  };
+      resetAnswers();
+      deleteTimer();
+    };
     create_buttons(quiz_data);
     countdown();
   }
@@ -89,6 +89,7 @@ function create_buttons(quiz_data) {
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
     getNextQuestion();
+    playSound();
   });
   nextButton.textContent = "Next Question";
   containerNextButton.appendChild(nextButton);
@@ -192,6 +193,7 @@ function createProgressbar(id, duration, callback) {
 function countdown() {
   createProgressbar('progressbar1', '5s', function () {
     getNextQuestion();
+    playSound();
     console.log("Hier Next Question Button anbinden!")
     // alert('20s progressbar is finished!');
   });
@@ -204,6 +206,14 @@ function deleteTimer() {
   // countdown();
 }
 
+// ################### Play Sound ########################
+
+function playSound() {
+  // ACHTUNG: SOUNDDATEI MUSS IM "DIST" Ordner LIEGEN!!!
+  // Die Ordnerstruktur muss nicht sein, nur die Datei.
+  const sound = new Audio('Notification.mp3');
+  sound.play();
+}
 
 // #######################################################
 // ############## MAIN ###################################
