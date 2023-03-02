@@ -1,20 +1,24 @@
-const { Question, getQuestionDB, postRandomQuestionDB } = require("../models/question");
+const { Question, postRandomQuestionDB, questionsTotal } = require("../models/question"); // getQuestionDB,
 
-async function getRandomQuestion(request, response) {
-  const questions = await getQuestionDB();
-  const question = questions[0];
-  console.log(question);
-  await question.getAnswers()
-  response.send(question.asJsonForQuestion());
-}
+// async function getRandomQuestion(request, response) {
+//   const questions = await getQuestionDB();
+//   const question = questions[0];
+//   console.log(question);
+//   await question.getAnswers()
+//   response.send(question.asJsonForQuestion());
+// }
 
 async function postRandomQuestion(request, response) {
   console.log(request.body);
   const questions = await postRandomQuestionDB(request.body.dont_ask);
   const question = questions[0];
   await question.getAnswers()
+  console.log(question);
+  const countLeft = await questionsTotal();
+  question.countLeft = countLeft;
+  console.log(question);
   response.send(question.asJsonForQuestion());
 }
 
 
-module.exports = { getRandomQuestion, postRandomQuestion };
+module.exports = {  postRandomQuestion }; // getRandomQuestion,

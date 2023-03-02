@@ -1,4 +1,4 @@
-// #################### Variable #######################################################
+// #################### Variables #######################################################
 
 let current_id = 1;
 let current_answers_total = 0;
@@ -125,8 +125,6 @@ function check_answer_backend() {
     .catch((error) => console.log(error));
 
   function check_answers(res) {
-
-
 
     res.forEach((answer) => {
       for (let i = 1; i < res.length + 1; i++) {
