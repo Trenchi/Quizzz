@@ -29,7 +29,7 @@ class Question {
 }
 
 
-async function countQuestionsLeft() {
+async function questionsTotal() {
   const res = await pgClient.query("SELECT COUNT(*) FROM questions;");
   console.log(res.rows[0]);
   return res.rows[0].count;
@@ -66,5 +66,5 @@ async function postRandomQuestionDB(array_id) {
 
 
 
-module.exports = { postRandomQuestionDB, countQuestionsLeft }; // getQuestionDB,
+module.exports = { postRandomQuestionDB, questionsTotal }; // getQuestionDB,
 
