@@ -89,6 +89,7 @@ function create_buttons(quiz_data) {
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
     getNextQuestion();
+    playSound();
   });
   nextButton.textContent = "Next Question";
   containerNextButton.appendChild(nextButton);
@@ -194,6 +195,7 @@ function createProgressbar(id, duration, callback) {
 function countdown() {
   createProgressbar('progressbar1', '5s', function () {
     getNextQuestion();
+    playSound();
     console.log("Hier Next Question Button anbinden!")
     // alert('20s progressbar is finished!');
   });
@@ -209,7 +211,9 @@ function deleteTimer() {
 // ################### Play Sound ########################
 
 function playSound() {
-  let sound = new Audio('/Frontend/src/content/audio/wav/mixkit-retro-game-notification-212_1.wav');
+  // ACHTUNG: SOUNDDATEI MUSS IM "DIST" Ordner LIEGEN!!!
+  // Die Ordnerstruktur muss nicht sein, nur die Datei.
+  const sound = new Audio('Notification.mp3');
   sound.play();
 }
 
