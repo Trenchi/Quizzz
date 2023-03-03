@@ -14,8 +14,8 @@ async function postRandomQuestion(request, response) {
   const question = questions[0];
   await question.getAnswers()
   console.log(question);
-  const countLeft = await questionsTotal();
-  question.countLeft = countLeft;
+  const countTotal = await questionsTotal();
+  question.countTotal = countTotal;
   console.log(question);
   response.send(question.asJsonForQuestion());
 }

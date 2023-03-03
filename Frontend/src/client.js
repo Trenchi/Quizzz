@@ -2,8 +2,12 @@
 
 let current_id = 1;
 let current_answers_total = 0;
-const dont_ask = [0]; //
+let dont_ask = [0]; //
 let user_answer = "";
+let questionsTotal = 0;
+
+console.log(dont_ask.length);
+
 
 // ###################### new Question / POST ########################################################
 
@@ -33,6 +37,8 @@ function getNextQuestion() {
     };
     create_buttons(quiz_data);
     countdown();
+    questionsTotal = quiz_data.questionsTotal;
+    console.log(questionsTotal);
   }
 }
 
@@ -141,9 +147,16 @@ function check_answer_backend() {
 
             if (user_answer == answer.text) {
               console.log("correct");
-              // console.log(answer.questionId);
+
+
+
               dont_ask.push(answer.questionId);
-              console.log(dont_ask);
+              console.log(dont_ask.length); 
+
+              if (questionsTotal == dont_ask.length) {
+                dont_ask = [0];
+              }
+              // console.log(dont_ask);
 
             } else {
               console.log("wrong");

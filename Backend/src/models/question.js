@@ -5,7 +5,7 @@ class Question {
   id;
   question;
   answers;
-  countLeft;
+  countTotal;
 
   constructor(data) {
     this.id = data.id;
