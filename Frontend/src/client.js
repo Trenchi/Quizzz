@@ -6,7 +6,7 @@ let dont_ask = [0]; //
 let user_answer = "";
 let questionsTotal = 0;
 
-console.log(dont_ask.length);
+console.log(questionsTotal);
 
 
 // ###################### new Question / POST ########################################################
@@ -30,15 +30,17 @@ function getNextQuestion() {
     .catch((error) => console.log(error));
 
   function create(quiz_data) {
-    console.log(dont_ask);
+    // console.log(dont_ask);
+
     if (document.getElementById("answer_1")) {
       resetAnswers();
       deleteTimer();
     };
     create_buttons(quiz_data);
     countdown();
+    console.log(quiz_data.countTotal);
     questionsTotal = quiz_data.questionsTotal;
-    console.log(questionsTotal);
+    // console.log(questionsTotal);
   }
 }
 
@@ -95,7 +97,7 @@ function create_buttons(quiz_data) {
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
     getNextQuestion();
-    playSound();
+    // playSound();
   });
   nextButton.textContent = "Next Question";
   containerNextButton.appendChild(nextButton);
@@ -115,7 +117,7 @@ function resetAnswers() {
 // #################### check Answer / POST #############################################
 
 function check_answer_backend() {
-  // id = current_id;
+
   const fetchConfig = {
     method: "POST",
     headers: {
@@ -130,45 +132,45 @@ function check_answer_backend() {
     .then((res) => res.json())
     .then((json) => check_answers(json))
     .catch((error) => console.log(error));
+}
 
-  function check_answers(res) {
+function check_answers(res) {
 
-    res.forEach((answer) => {
-      for (let i = 1; i < res.length + 1; i++) {
-        const index_id = "answer_" + i;
+  console.log(questionsTotal);
 
-        if (
-          String(answer.text) === document.getElementById(index_id).innerHTML
-        ) {
-          if (answer.isCorrect === true) {
-            document.getElementById(index_id).style.backgroundColor = "green";
-            // console.log(user_answer);
-            // console.log(answer);
+  res.forEach((answer) => {
+    for (let i = 1; i < res.length + 1; i++) {
+      const index_id = "answer_" + i;
 
-            if (user_answer == answer.text) {
-              console.log("correct");
+      if (
+        String(answer.text) === document.getElementById(index_id).innerHTML
+      ) {
+        if (answer.isCorrect === true) {
+          document.getElementById(index_id).style.backgroundColor = "green";
+          // console.log(user_answer);
+          // console.log(answer);
 
+          if (user_answer == answer.text) {
+            console.log("correct");
+            dont_ask.push(answer.questionId);
 
+            console.log(dont_ask.length);
+            console.log(questionsTotal);
 
-              dont_ask.push(answer.questionId);
-              console.log(dont_ask.length); 
-
-              if (questionsTotal == dont_ask.length) {
-                dont_ask = [0];
-              }
-              // console.log(dont_ask);
-
-            } else {
-              console.log("wrong");
-            }
+            if (questionsTotal == dont_ask.length) {
+              dont_ask = [0];}
+            // console.log(dont_ask.length); 
 
           } else {
-            document.getElementById(index_id).style.backgroundColor = "red";
+            console.log("wrong");
           }
+
+        } else {
+          document.getElementById(index_id).style.backgroundColor = "red";
         }
       }
-    });
-  }
+    }
+  });
 }
 
 // ############### Progress Timer Bar ##################
@@ -206,8 +208,8 @@ function createProgressbar(id, duration, callback) {
 function countdown() {
   createProgressbar('progressbar1', '5s', function () {
     getNextQuestion();
-    playSound();
-    console.log("Hier Next Question Button anbinden!")
+    // playSound();
+    // console.log("Hier Next Question Button anbinden!")
     // alert('20s progressbar is finished!');
   });
 };
