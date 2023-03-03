@@ -5,7 +5,7 @@ class Question {
   id;
   question;
   answers;
-  countLeft;
+  countTotal;
 
   constructor(data) {
     this.id = data.id;
@@ -23,7 +23,8 @@ class Question {
     return {
       id: this.id,
       question: this.question,
-      answers: this.answers.map(a => a.asJsonForQuestion())
+      answers: this.answers.map(a => a.asJsonForQuestion()),
+      countTotal: this.countTotal
     }
   }
 }
@@ -31,7 +32,7 @@ class Question {
 
 async function questionsTotal() {
   const res = await pgClient.query("SELECT COUNT(*) FROM questions;");
-  console.log(res.rows[0]);
+  // console.log(res.rows[0]);
   return res.rows[0].count;
 }
 
@@ -44,6 +45,8 @@ async function questionsTotal() {
 
 async function postRandomQuestionDB(array_id) {
   let where_id = ""
+  if (array_id.length !== 0) {
+  where_id = "WHERE"
   console.log(array_id)
   array_id.forEach((id, i) => {
     // console.log(id);
@@ -55,12 +58,13 @@ async function postRandomQuestionDB(array_id) {
       where_id += " AND "
     }
     // console.log(where_id)
-  })
-  let query = "SELECT * FROM questions WHERE" + where_id + " ORDER BY random() LIMIT 1;"
+  })}
+
+  let query = "SELECT * FROM questions " + where_id + " ORDER BY random() LIMIT 1;"
 
 
   const res = await pgClient.query(query);
-  console.log(res.rows[0]);
+  // console.log(res.rows[0]);
   return res.rows.map(g => new Question(g))
 }
 

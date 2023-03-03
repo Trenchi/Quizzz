@@ -9,14 +9,14 @@ const { Question, postRandomQuestionDB, questionsTotal } = require("../models/qu
 // }
 
 async function postRandomQuestion(request, response) {
-  console.log(request.body);
+  // console.log(request.body);
   const questions = await postRandomQuestionDB(request.body.dont_ask);
   const question = questions[0];
   await question.getAnswers()
-  console.log(question);
-  const countLeft = await questionsTotal();
-  question.countLeft = countLeft;
-  console.log(question);
+  // console.log(question);
+  const countTotal = await questionsTotal();
+  question.countTotal = countTotal;
+  // console.log(question);
   response.send(question.asJsonForQuestion());
 }
 
