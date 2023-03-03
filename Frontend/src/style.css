@@ -1,5 +1,13 @@
 /* ########## Questions & Buttons ########## */
 
+.question-text-center-and-middle {
+    height:100%;
+}
+
+.box-hight {
+    height:50%;
+}
+
 #question {
     margin-bottom: 75px;
     font-size: 50;
