@@ -2,7 +2,7 @@
 
 let current_id = 1;
 let current_answers_total = 0;
-let dont_ask = [0]; //
+let dont_ask = []; //
 let user_answer = "";
 let questionsTotal = 0;
 
@@ -38,9 +38,9 @@ function getNextQuestion() {
     };
     create_buttons(quiz_data);
     countdown();
-    console.log(quiz_data.countTotal);
-    questionsTotal = quiz_data.questionsTotal;
-    // console.log(questionsTotal);
+    // console.log(quiz_data.countTotal);
+    questionsTotal = quiz_data.countTotal;
+    console.log(questionsTotal);
   }
 }
 

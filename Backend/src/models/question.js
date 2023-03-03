@@ -45,7 +45,9 @@ async function questionsTotal() {
 
 async function postRandomQuestionDB(array_id) {
   let where_id = ""
-  // console.log(array_id)
+  if (array_id.length !== 0) {
+  where_id = "WHERE"
+  console.log(array_id)
   array_id.forEach((id, i) => {
     // console.log(id);
     // console.log(i);
@@ -56,8 +58,9 @@ async function postRandomQuestionDB(array_id) {
       where_id += " AND "
     }
     // console.log(where_id)
-  })
-  let query = "SELECT * FROM questions WHERE" + where_id + " ORDER BY random() LIMIT 1;"
+  })}
+
+  let query = "SELECT * FROM questions " + where_id + " ORDER BY random() LIMIT 1;"
 
 
   const res = await pgClient.query(query);
