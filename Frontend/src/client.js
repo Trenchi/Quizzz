@@ -211,7 +211,8 @@ function deleteTimer() {
 function playSound() {
   // ACHTUNG: SOUNDDATEI MUSS IM "DIST" Ordner LIEGEN!!!
   // Die Ordnerstruktur muss nicht sein, nur die Datei.
-  const sound = new Audio('Notification.mp3');
+  let sound = document.getElementById("notification-sound");
+  sound.currentTime = 0;
   sound.play();
 }
 
