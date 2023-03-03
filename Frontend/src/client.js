@@ -2,17 +2,14 @@
 
 let current_id = 1;
 let current_answers_total = 0;
-let dont_ask = []; //
+let dont_ask = [];
 let user_answer = "";
-let questionsTotal = 0;
+let questionsTotalDB = 0;
 
-console.log(questionsTotal);
+// ###################### POST Next Question + Check Answers ################
 
-
-// ###################### new Question / POST ########################################################
-
+// triggers when the user clicks the next button and calls the create() function
 function getNextQuestion() {
-  console.log(dont_ask);
 
   const fetchConfig = {
     method: "POST",
@@ -28,94 +25,9 @@ function getNextQuestion() {
     .then((res) => res.json())
     .then((json) => create(json))
     .catch((error) => console.log(error));
-
-  function create(quiz_data) {
-    // console.log(dont_ask);
-
-    if (document.getElementById("answer_1")) {
-      resetAnswers();
-      deleteTimer();
-    };
-    create_buttons(quiz_data);
-    countdown();
-    // console.log(quiz_data.countTotal);
-    questionsTotal = quiz_data.countTotal;
-    console.log(questionsTotal);
-  }
 }
 
-// #################### new Question / GET #############################################
-
-// function getData() {
-//   fetch("http://localhost:4000/question/random")
-//     .then((response) => response.json())
-//     .then((json) => create(json))
-//     .catch((error) => console.log(error));
-
-//   function create(quiz_data) {
-//     create_buttons(quiz_data);
-//   }
-// }
-
-// ################################## create Buttons #############################
-
-function create_buttons(quiz_data) {
-  current_answers_total = 0;
-  current_id = quiz_data.id;
-
-  document.getElementById("question").innerHTML = quiz_data.question;
-
-  const container = document.getElementById("answer_buttons");
-  quiz_data.answers.forEach((answer, i) => {
-    const button = document.createElement("button");
-    button.id = "answer_" + (i + 1);
-    button.addEventListener("click", function (event) {
-      // console.log(event.target);
-
-      user_answer = event.target.innerHTML;
-    });
-    button.addEventListener("click", function logQuestion(id) {
-      check_answer_backend(id);
-    });
-    button.textContent = answer.text;
-    container.appendChild(button);
-    current_answers_total++;
-
-    const lineBreak = document.createElement("br"); // Add BR
-    container.appendChild(lineBreak);               // Add BR
-
-    // Scale button font-size
-    // const buttonWidth = button.offsetWidth;
-    // const textWidth = button.scrollWidth;
-    // const scale = Math.min(1, buttonWidth / textWidth);
-    // const fontSize = parseInt(window.getComputedStyle(button).getPropertyValue('font-size'));
-    // button.style.fontSize = (fontSize * scale) + "px";
-  });
-
-  const containerNextButton = document.getElementById("next_button");
-  const nextButton = document.createElement("button");
-  nextButton.id = "next";
-  nextButton.addEventListener("click", function next() {
-    getNextQuestion();
-    // playSound();
-  });
-  nextButton.textContent = "Next Question";
-  containerNextButton.appendChild(nextButton);
-}
-
-// ############### Next Question + Reset Button Color ##################
-
-function resetAnswers() {
-  for (let i = 1; i < current_answers_total + 1; i++) {
-    document.getElementById("answer_" + i).remove();
-    const br = document.querySelector('#br br');
-    br.remove();
-  }
-  document.getElementById("next").remove();
-}
-
-// #################### check Answer / POST #############################################
-
+// triggers when the user clicks any answer button and calls the checkAnswers() function
 function check_answer_backend() {
 
   const fetchConfig = {
@@ -130,41 +42,96 @@ function check_answer_backend() {
 
   fetch("http://localhost:4000/question/check_answer", fetchConfig)
     .then((res) => res.json())
-    .then((json) => check_answers(json))
+    .then((json) => checkAnswers(json))
     .catch((error) => console.log(error));
 }
+// ################################## functions #############################
 
-function check_answers(res) {
+// *Important function that triggers when user clicks "Next Question" or when the timmer ends
+function create(quiz_data) {
 
-  console.log(questionsTotal);
+  resetPriorQuestion()
 
+  questionsTotalDB = quiz_data.countTotal;
+  current_id = quiz_data.id;
+
+  createQuestionLine(quiz_data);
+  createButtonAnswer(quiz_data);
+  createButtonNext(quiz_data);
+  createCountdown();
+}
+
+// ----------------------------------------------------------------
+
+function resetPriorQuestion() {
+  if (document.getElementById("answer_1")) {
+    resetAnswers(); // if so reset the answers 
+    deleteTimer(); // and reset timer
+  };
+}
+
+function resetAnswers() {
+  for (let i = 1; i < current_answers_total + 1; i++) {
+    document.getElementById("answer_" + i).remove();
+    const br = document.querySelector('#br br');
+    br.remove();
+  }
+  document.getElementById("next").remove();
+}
+
+function createQuestionLine(quiz_data) {
+  document.getElementById("question").innerHTML = quiz_data.question;
+}
+
+function createButtonAnswer(quiz_data) {
+  current_answers_total = 0;
+  const container = document.getElementById("answer_buttons");
+  quiz_data.answers.forEach((answer, i) => {
+    const button = document.createElement("button");
+    button.id = "answer_" + (i + 1);
+    button.addEventListener("click", function (event) {
+      user_answer = event.target.innerHTML;
+    });
+    button.addEventListener("click", function logQuestion(id) {
+      check_answer_backend(id);
+    });
+    button.textContent = answer.text;
+    container.appendChild(button);
+    current_answers_total++;
+    const lineBreak = document.createElement("br"); // Add BR
+    container.appendChild(lineBreak);               // Add BR
+  });
+}
+
+function createButtonNext() {
+  const containerNextButton = document.getElementById("next_button");
+  const nextButton = document.createElement("button");
+  nextButton.id = "next";
+  nextButton.addEventListener("click", function next() {
+    getNextQuestion();
+    playSound();
+  });
+  nextButton.textContent = "Next Question";
+  containerNextButton.appendChild(nextButton);
+}
+
+function checkAnswers(res) {
   res.forEach((answer) => {
     for (let i = 1; i < res.length + 1; i++) {
       const index_id = "answer_" + i;
-
       if (
         String(answer.text) === document.getElementById(index_id).innerHTML
       ) {
         if (answer.isCorrect === true) {
           document.getElementById(index_id).style.backgroundColor = "green";
-          // console.log(user_answer);
-          // console.log(answer);
-
           if (user_answer == answer.text) {
-            console.log("correct");
             dont_ask.push(answer.questionId);
-
-            console.log(dont_ask.length);
-            console.log(questionsTotal);
-
-            if (questionsTotal == dont_ask.length) {
-              dont_ask = [0];}
-            // console.log(dont_ask.length); 
-
+            if (questionsTotalDB == dont_ask.length) {
+              dont_ask = [0];
+            }
           } else {
             console.log("wrong");
           }
-
         } else {
           document.getElementById(index_id).style.backgroundColor = "red";
         }
@@ -175,12 +142,6 @@ function check_answers(res) {
 
 // ############### Progress Timer Bar ##################
 
-/*
- *  Creates a progressbar.
- *  @param id the id of the div we want to transform in a progressbar
- *  @param duration the duration of the timer example: '10s'
- *  @param callback, optional function which is called when the progressbar reaches 0.
- */
 function createProgressbar(id, duration, callback) {
   // We select the div that we want to turn into a progressbar
   const progressbar = document.getElementById(id);
@@ -205,7 +166,7 @@ function createProgressbar(id, duration, callback) {
   progressbarinner.style.animationPlayState = 'running';
 }
 
-function countdown() {
+function createCountdown() {
   createProgressbar('progressbar1', '5s', function () {
     getNextQuestion();
     // playSound();
@@ -213,7 +174,6 @@ function countdown() {
     // alert('20s progressbar is finished!');
   });
 };
-
 
 function deleteTimer() {
   let element = document.getElementById('progressbar1');
