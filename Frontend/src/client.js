@@ -188,6 +188,7 @@ function playSound() {
   // Die Ordnerstruktur muss nicht sein, nur die Datei.
   let sound = document.getElementById("notification-sound");
   sound.currentTime = 0;
+  sound.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
   sound.play();
 }
 
