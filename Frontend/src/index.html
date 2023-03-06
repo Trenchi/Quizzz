@@ -1,49 +1,105 @@
 <!DOCTYPE html>
-<html lang="de" class="uk-light uk-background-secondary uk-background-norepeat uk-background-top-center">
-<!-- Enable Dark Mode -->
+<html lang="de">
 
 <head>
-
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quizzz - Ein Projekt con Team 4</title>
+    <title>Willkommen!</title>
 
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/css/uikit.min.css" />
-
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/css/uikit.min.css" />
+    <!-- https://codepen.io/BrainBug/pen/yLxXYqG -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yellowtail" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:400,700,900" />
     <!-- Local CSS -->
-    <link rel="stylesheet" href="style.css" />
-
+    <link rel="stylesheet" href="frontpage.css" />
 </head>
+
 <body>
-    <div class="uk-position-top-center question-text-center-and-middle">
-        <div id="content" class="question-text-center-and-middle uk-positon-cover uk-flex uk-flex-column uk-flex-between uk-flex-1">
-            <div class="box-hight uk-flex uk-flex-middle">
-                <h2 id="question"></h2>
-            </div>
-            <div id="br" class="box-hight">
-                <div id="answer_buttons" class="button"></div>
-                <div class="" id='progressbar1'></div>
-                <div class="" style="margin-top: 0;" id="next_button"></div>
+    <div>
+        <div>
+            <h3 class="text">
+                Willkommen bei unserem Spiel<br />
+                "Quizzz"<br />Das Motto lautet "The 80´s"<br />
+                <br />
+                <br />
+                Viel Spass ...
+            </h3>
+        </div>
+        <div>
+            <div>
+                <a class="btn uk-button uk-button-danger uk-align-center" href="game.html">Start Game</a>
             </div>
         </div>
     </div>
+    <div class="wrapper">
+        <h1>Quizzz Game</h1>
+        <h1></h1>
+        <h2>Created by Team 4</h2>
+
+        <svg height="320" width="400" class="logo-triangle">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color: rgb(50, 50, 50); stop-opacity: 1" />
+                    <stop offset="100%" style="stop-color: black; stop-opacity: 1" />
+                </linearGradient>
+            </defs>
+            <filter id="dropshadow" height="130%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                <feOffset dx="2" dy="2" result="offsetblur" />
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <polygon points="0,0 400,0 200,300" stroke="#36e2f8" stroke-width="3" />
+        </svg>
+    </div>
+
+
+    <script id="vertexShader" type="vert">
+
+      // Uniforms
+      uniform float time;
+      varying vec3 vNormal;
+
+      void main(void) {
+         vec3 v = position;
+         vNormal = normal;
+         v.z += sin(2.0 * position.x + (time)) * 925.5;
+
+         gl_Position = projectionMatrix *
+                      modelViewMatrix *
+                      vec4(v, 0.9);
+      }
+    </script>
+
+    <script id="fragmentShader" type="vert">
+      varying vec3 vNormal;
+      uniform float time;
+
+      void main(void) {
+          vec3 light = vec3(0.3, .9, .1);
+
+          light = normalize(light);
+
+          float dProd = max(0.2, dot(vNormal, light));
+
+          gl_FragColor = vec4(0, // R
+                            84, // G
+                            25, // B
+                            1.0);  // A
+      }
+    </script>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/js/uikit-icons.min.js"></script>
+    <!-- https://codepen.io/BrainBug/pen/yLxXYqG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
+    <!-- Local JS -->
+    <script src="frontpage.js"></script>
 </body>
-
-<!-- Import Audio -->
-<audio src="./content/mp3/Notification.mp3" id="notification-sound"></audio>
-
-<!-- UIkit JS -->
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit-icons.min.js"></script>
-
-<!-- Bootstrap CSS -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
-
-<!-- Local JS -->
-<script src="client.js"></script>
 
 </html>
