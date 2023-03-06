@@ -169,7 +169,7 @@ function createProgressbar(id, duration, callback) {
 function createCountdown() {
   createProgressbar('progressbar1', '5s', function () {
     getNextQuestion();
-    // playSound();
+    playSound();
     // console.log("Hier Next Question Button anbinden!")
     // alert('20s progressbar is finished!');
   });

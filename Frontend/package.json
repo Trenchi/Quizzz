@@ -2,16 +2,24 @@
   "name": "client",
   "version": "1.0.0",
   "description": "Frontend",
-  "main": "client.js",
+  "main": "fontpage.js",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel --no-cache",
+    "build": "parcel build --no-cache"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "@parcel/bundler-default": "^2.8.3",
+    "@parcel/transformer-babel": "^2.8.3",
+    "@parcel/transformer-inline-string": "^2.8.3",
+    "@parcel/transformer-js": "^2.8.3",
+    "@parcel/transformer-typescript-types": "^2.8.3",
+    "@parcel/transformer-worklet": "^2.8.3"
   }
 }
