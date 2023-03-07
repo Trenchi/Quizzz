@@ -5,6 +5,11 @@ let current_answers_total = 0;
 let dont_ask = [];
 let user_answer = "";
 let questionsTotalDB = 0;
+let highscore = 0;
+let answerGiven = true;
+let timer = null;
+let timePerQuestion = 5;
+let pointConversion = 1;
 
 // ###################### POST Next Question + Check Answers ################
 
@@ -49,6 +54,14 @@ function check_answer_backend() {
 
 // *Important function that triggers when user clicks "Next Question" or when the timmer ends
 function create(quiz_data) {
+
+  if (answerGiven === false) {
+    highscore -= 500;
+    console.log("no answer - 500");
+  }
+  answerGiven = false;
+
+  console.log("current highscore " + highscore);
 
   resetPriorQuestion()
 
@@ -125,12 +138,25 @@ function checkAnswers(res) {
         if (answer.isCorrect === true) {
           document.getElementById(index_id).style.backgroundColor = "green";
           if (user_answer == answer.text) {
+            answerGiven = true;
+            console.log("correct");
+            highscore += 1000 * pointConversion;
+            console.log("+ " + 1000 * pointConversion);
+            console.log("current highscore " + highscore);
             dont_ask.push(answer.questionId);
             if (questionsTotalDB == dont_ask.length) {
               dont_ask = [0];
             }
+            // console.log(res.length);
+            blockButtons();
           } else {
+            answerGiven = true;
             console.log("wrong");
+            console.log("- 500")
+            console.log("current highscore " + highscore);
+            highscore -= 500;
+            console.log(highscore);
+            blockButtons();
           }
         } else {
           document.getElementById(index_id).style.backgroundColor = "red";
@@ -138,6 +164,12 @@ function checkAnswers(res) {
       }
     }
   });
+}
+
+function blockButtons() {
+for (let i = 1; i < current_answers_total + 1; i++) {
+document.getElementById("answer_" + i).disabled = true;
+}
 }
 
 // ############### Progress Timer Bar ##################
@@ -170,9 +202,13 @@ function createCountdown() {
   createProgressbar('progressbar1', '5s', function () {
     getNextQuestion();
     playSound();
-    // console.log("Hier Next Question Button anbinden!")
-    // alert('20s progressbar is finished!');
   });
+  clearInterval(timer);
+  let secondsLeft = 5;
+  timer = setInterval(function() {
+    secondsLeft -= 1;
+    pointConversion = secondsLeft/timePerQuestion
+  }, 1000);
 };
 
 function deleteTimer() {
@@ -180,6 +216,7 @@ function deleteTimer() {
   element.querySelectorAll('*').forEach(n => n.remove());
   // countdown();
 }
+
 
 // ################### Play Sound ########################
 
@@ -189,7 +226,7 @@ function playSound() {
   let sound = document.getElementById("notification-sound");
   sound.currentTime = 0;
   sound.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
-  sound.play();
+  // sound.play();
 }
 
 // #######################################################
