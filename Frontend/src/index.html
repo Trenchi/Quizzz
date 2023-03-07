@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 
 <head>
@@ -14,30 +14,52 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:400,700,900" />
     <!-- Local CSS -->
     <link rel="stylesheet" href="./css/frontpage.css" />
+
+    <audio id="myAudio" autoplay loop muted>
+        <source src="./content/mp3/Intro.mp3" type="audio/mpeg"> 
+    </audio>
+
 </head>
 
 <body>
-    <div>
-        <div>
-            <h3 class="text">
-                Willkommen bei unserem Spiel<br />
-                "Quizzz"<br />Das Motto lautet "The 80´s"<br />
-                <br />
-                <br />
-                Viel Spass ...
-            </h3>
+    <div class="parent-container">
+        <!-- Invisible Space to Format Boxes -->
+        <div class="child-0">
+            <h2> </h2>
         </div>
-        <div>
-            <div>
-                <a class="btn uk-button uk-button-danger uk-align-center" href="game.html">Start Game</a>
-            </div>
+        <!-- Welcome Text -->
+        <div class="child-1">
+            <br>
+            You are Sarah Connor. <br>
+            The Machines are about to take over the Internet. <br>
+            The only way to save the world is to beat their highscore in a battle of knowledge. <br>
+            <br>
+            No time for questions. <br>
+            (⌐■.■)
+            <br />
+            <br />
+            <br />
+        </div>
+        <!-- Start Game Button -->
+        <div class="child-2">
+            <a class="child-hover" href="game.html">Start Game</a>
+        </div>
+        <!-- Top Animation Text1  -->
+        <div class="child-3">
+            <h1>Quizzz Game</h1>
+        </div>
+        <!-- Top Animation Text2  -->
+        <div class="child-4">
+            <h2>by Team 4</h2>
+        </div>
+        <!-- Creator Names -->
+        <div class="child-5">
+            <h3>created by Mete, Maik, Önder & Șüheda</h3>
         </div>
     </div>
-    <div class="wrapper">
-        <h1>Quizzz Game</h1>
-        <h1></h1>
-        <h2>Created by Team 4</h2>
 
+    <!-- Top Triangle Animation (Has a fixed Position) -->
+    <div>
         <svg height="320" width="400" class="logo-triangle">
             <defs>
                 <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -56,7 +78,6 @@
             <polygon points="0,0 400,0 200,300" stroke="#36e2f8" stroke-width="3" />
         </svg>
     </div>
-
 
     <script id="vertexShader" type="vert">
 
@@ -99,7 +120,8 @@
     <!-- https://codepen.io/BrainBug/pen/yLxXYqG -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
     <!-- Local JS -->
-    <script src="./js/frontpage.js"></script>
+    <script src="./js/animation.js"></script>
+    <script src="./js/intro.js"></script>
 </body>
 
 </html>
