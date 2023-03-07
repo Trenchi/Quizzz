@@ -17,12 +17,21 @@
     <!-- Local CSS -->
     <link rel="stylesheet" href="./css/game.css" />
 
-    <video id="bg-video" autoplay muted loop>
+    <!-- <video id="bg-video" autoplay muted loop>
 		<source src="./content/video/80s-Background .mp4" type="video/mp4">
-	</video>
+	</video> -->
 
 </head>
 <body>
+    <div id="fullscreen-bg">
+        <video autoplay loop muted poster="./content/jpg/80s-Background.jpg">
+            <source src="./content/video/80s-Background .mp4" type="video/mp4">
+        </video>
+        <img src="./content/jpg/80s-Background.jpg" alt="Hintergrundbild" id="fullscreen-bg-image">
+        <button id="fullscreen-bg-toggle">Bild/Video wechseln</button>
+    </div>
+    
+
     <div class="uk-position-top-center question-text-center-and-middle">
         <div id="content" class="question-text-center-and-middle uk-positon-cover uk-flex uk-flex-column uk-flex-between uk-flex-1">
             <div class="box-hight uk-flex uk-flex-middle">
@@ -49,5 +58,6 @@
 
 <!-- Local JS -->
 <script src="./js/client.js"></script>
+<script src="./js/background.js"></script>
 
 </html>

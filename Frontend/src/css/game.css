@@ -12,6 +12,60 @@ video#bg-video {
     z-index: -1;
 }
 
+/* UNDER THIS LINE TESTING SWITCH BUTTON */
+
+#fullscreen-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+    width: 100%;
+    height: 100%;
+}
+
+#fullscreen-bg video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+#fullscreen-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -50;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#fullscreen-bg-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    #fullscreen-bg video {
+        display: none;
+    }
+    #fullscreen-bg-image {
+        display: block;
+    }
+}
+
 /* TESTING AREA VIDEO WALLPAPER */
 
 
