@@ -20,7 +20,7 @@
 
 .uk-background-secondary {
     background-color: #000000;
-    background-image: image-set("./content/jpg/2449622.jpg");
+    background-image: image-set("../content/jpg/2449622.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
