@@ -136,7 +136,7 @@ function checkAnswers(res) {
         String(answer.text) === document.getElementById(index_id).innerHTML
       ) {
         if (answer.isCorrect === true) {
-          document.getElementById(index_id).style.backgroundColor = "green";
+          document.getElementById(index_id).style.backgroundColor = "#02A611";
           if (user_answer == answer.text) {
             answerGiven = true;
             console.log("correct");
@@ -159,7 +159,7 @@ function checkAnswers(res) {
             blockButtons();
           }
         } else {
-          document.getElementById(index_id).style.backgroundColor = "red";
+          document.getElementById(index_id).style.backgroundColor = "#A60297";
         }
       }
     }
