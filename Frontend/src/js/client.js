@@ -133,7 +133,7 @@ function createButtonNext() {
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
     getNextQuestion();
-    playSound();
+    // playSound();
   });
   nextButton.textContent = "Next Question";
   containerNextButton.appendChild(nextButton);
@@ -338,14 +338,20 @@ function deleteTimer() {
 
 // ################### Play Sound ########################
 
-function playSound() {
+function playSoundCoin() {
   // ACHTUNG: SOUNDDATEI MUSS IM "DIST" Ordner LIEGEN!!!
   // Die Ordnerstruktur muss nicht sein, nur die Datei.
-  let sound = document.getElementById("notification-sound");
-  sound.currentTime = 0;
-  sound.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
-  sound.play();
+  let soundCoin = document.getElementById("notification-coin");
+  soundCoin.currentTime = 0;
+  soundCoin.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
+  soundCoin.play();
 };
+
+/* Play Sound File Beta Test */
+
+// EMPTY
+
+/* Play Sound File Beta Test */
 
 // #######################################################
 // ############## MAIN ###################################
