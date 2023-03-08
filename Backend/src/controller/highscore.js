@@ -7,8 +7,16 @@ response.send(highscore);
 }
 
 async function postHighscore(request, response) {
-await postHighscoreDB(request.body)
-response.send(console.log("Placeholder"));
+const position = await postHighscoreDB(request.body)
+console.log(position);
+const highscore = await getHighscoreDB();
+console.log(highscore);
+
+
+response.send({
+    highscore: highscore,
+    position: position
+});
 }
 
 module.exports = { getHighscore, postHighscore };
