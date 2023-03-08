@@ -86,8 +86,8 @@ function resetPriorQuestion() {
 function resetAnswers() {
   for (let i = 1; i < current_answers_total + 1; i++) {
     document.getElementById("answer_" + i).remove();
-    const br = document.querySelector('#br br');
-    br.remove();
+    //NOTE REMOVE BR BETWEEN ANSWER BUTTONS- const br = document.querySelector('#br br');
+    //NOTE REMOVE BR BETWEEN ANSWER BUTTONS- br.remove();
   }
   document.getElementById("next").remove();
 }
@@ -101,6 +101,7 @@ function createButtonAnswer(quiz_data) {
   const container = document.getElementById("answer_buttons");
   quiz_data.answers.forEach((answer, i) => {
     const button = document.createElement("button");
+    button.classList.add("styled-button"); // MAIK
     button.id = "answer_" + (i + 1);
     button.addEventListener("click", function (event) {
       user_answer = event.target.innerHTML;
@@ -111,8 +112,8 @@ function createButtonAnswer(quiz_data) {
     button.textContent = answer.text;
     container.appendChild(button);
     current_answers_total++;
-    const lineBreak = document.createElement("br"); // Add BR
-    container.appendChild(lineBreak);               // Add BR
+    // NOTE - ADD "BR" BETWEEN ANSWER BUTTONS const lineBreak = document.createElement("br"); // Add BR
+    // NOTE - ADD "BR" BETWEEN ANSWER BUTTONS container.appendChild(lineBreak);               // Add BR
   });
 }
 
