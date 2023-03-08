@@ -133,7 +133,7 @@ function createButtonNext() {
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
     getNextQuestion();
-    // playSound();
+    // playSound("BonusPoint");
   });
   nextButton.textContent = "Next Question";
   containerNextButton.appendChild(nextButton);
@@ -145,9 +145,9 @@ function createButtonEnd() {
   endButton.classList.add("micro-buttons");
   endButton.id = "end";
   endButton.addEventListener("click", function end() {
+    playSound("game-over");
     resetPriorQuestion();
     endGame();
-    // playSound();
   });
   endButton.textContent = "End Game";
   containerEndButton.appendChild(endButton);
@@ -165,6 +165,7 @@ function checkAnswers(res) {
           if (user_answer == answer.text) {
             answerGiven = true;
             console.log("correct");
+            playSound("bonus-points");
             highscore += 1000 * pointConversion;
             console.log("+ " + 1000 * pointConversion);
             console.log("current highscore " + highscore);
@@ -177,6 +178,7 @@ function checkAnswers(res) {
           } else {
             answerGiven = true;
             console.log("wrong");
+            playSound("wrong");
             console.log("- 500")
             console.log("current highscore " + highscore);
             highscore -= 500;
@@ -200,7 +202,7 @@ document.getElementById("answer_" + i).disabled = true;
 function endGame() {
 
   document.getElementById("question").innerHTML = `
-  <div>
+  <div style="padding: 125px">
   <h2>You're Score</h2>
   <p>${highscore}</p>
   <input style="text-align:center;" id="userName" placeholder="Enter Name" value="" /> <br>
@@ -209,9 +211,10 @@ function endGame() {
   `;
   const submitScoreButton = document.getElementById("submitScoreButton");
   submitScoreButton.addEventListener("click", function submitScore() {
-    userName = document.getElementById("userName").value; 
+    userName = document.getElementById("userName").value;
     resetSubmitPage();
     postHighscore(userName);
+    playSound("yeah");
   });
   
   function resetSubmitPage() {
@@ -319,7 +322,7 @@ function createProgressbar(id, duration, callback) {
 function createCountdown() {
   createProgressbar('progressbar1', '50s', function () {
     getNextQuestion();
-    playSound();
+    playSound("wrong");
   });
   clearInterval(timer);
   let secondsLeft = 5;
@@ -338,18 +341,27 @@ function deleteTimer() {
 
 // ################### Play Sound ########################
 
-function playSoundCoin() {
-  // ACHTUNG: SOUNDDATEI MUSS IM "DIST" Ordner LIEGEN!!!
-  // Die Ordnerstruktur muss nicht sein, nur die Datei.
-  let soundCoin = document.getElementById("notification-coin");
-  soundCoin.currentTime = 0;
-  soundCoin.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
-  soundCoin.play();
-};
+// function playSoundCoin() {
+//   // ACHTUNG: SOUNDDATEI MUSS IM "DIST" Ordner LIEGEN!!!
+//   // Die Ordnerstruktur muss nicht sein, nur die Datei.
+//   let soundCoin = document.getElementById("notification-coin");
+//   soundCoin.currentTime = 0;
+//   soundCoin.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
+//   soundCoin.play();
+// };
 
 /* Play Sound File Beta Test */
 
-// EMPTY
+function playSound(soundId) {
+  let sound = document.getElementById(soundId);
+  if(sound) {
+    sound.currentTime = 0;
+    sound.volume = 0.35;
+    sound.play();
+  } else {
+    console.log(`Could not find audio element with id ${soundId}`);
+  }
+}
 
 /* Play Sound File Beta Test */
 
