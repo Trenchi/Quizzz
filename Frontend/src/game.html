@@ -11,26 +11,42 @@
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/css/uikit.min.css" />
 
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> -->
-
     <!-- Local CSS -->
     <link rel="stylesheet" href="./css/game.css" />
 
 </head>
+
 <body>
-    <div class="uk-position-top-center question-text-center-and-middle" id="endScreen">
-        <div id="content" class="question-text-center-and-middle uk-positon-cover uk-flex uk-flex-column uk-flex-between uk-flex-1">
-            <div class="box-hight uk-flex uk-flex-middle">
-                <h2 id="question"></h2>
-            </div>
-            <div id="br" class="box-hight">
-                <div id="answer_buttons" class="button"></div>
-                <div class="" id='progressbar1'></div>
-                <div class="" style="margin-top: 0;" id="next_button"></div>
-            </div>
-            <div id="endGame"></div>
+
+
+    <div class="parrent-container">
+        <!-- Start - Toggle Button to Switch -->
+        <div id="fullscreen-bg">
+            <video autoplay loop muted poster="./content/jpg/80s-Background.jpg">
+                <source src="./content/video/80s-Background .mp4" type="video/mp4">
+            </video>
+            <img src="./content/jpg/80s-Background.jpg" alt="Hintergrundbild" id="fullscreen-bg-image">
+            <button id="fullscreen-bg-toggle">Bild/Video wechseln</button>
         </div>
+        <!-- End - Toggle Button to Switch -->
+
+        <div class="child-1">
+            <h2 id="question"></h2>
+        </div>
+
+        <div id="br" class="child2">
+            <div class="" id="answer_buttons" style="margin: auto;"></div>
+            <div class="" id='progressbar1'></div>
+            <div class="" id="next_button"></div>
+        </div>
+
+       <div id="endGame"></div>
+
+        <div>
+            <button class="child-4 micro-buttons" type="button">Restart</button>
+            <button class="child-4 micro-buttons" type="button">End Game</button>
+        </div>
+
     </div>
 </body>
 
@@ -41,10 +57,8 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit-icons.min.js"></script>
 
-<!-- Bootstrap CSS -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
-
 <!-- Local JS -->
 <script src="./js/client.js"></script>
+<script src="./js/background.js"></script>
 
 </html>
