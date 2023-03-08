@@ -1,7 +1,12 @@
 const { pgClient } = require("../services/database");
 
 async function getHighscoreDB() {
-const highscore = await pgClient.query("SELECT * FROM highscore ORDER BY points DESC LIMIT 10");
+const highscore = await pgClient.query(`
+SELECT 
+ROW_NUMBER() OVER (ORDER BY points desc) AS position,id,username,points
+FROM public.highscore
+LIMIT 10
+`);
 // console.log(highscore.rows);
 return highscore.rows;
 }
