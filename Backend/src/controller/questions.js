@@ -1,4 +1,4 @@
-const { postRandomQuestionDB, questionsTotal } = require("../models/question");
+const { postRandomQuestionDB, questionsTotal, getAllQuestionsDb } = require("../models/question");
 
 async function postRandomQuestion(request, response) {
   const questions = await postRandomQuestionDB(request.body.dont_ask);
@@ -9,4 +9,10 @@ async function postRandomQuestion(request, response) {
   response.send(question.asJsonForQuestion());
 }
 
-module.exports = {  postRandomQuestion };
+async function getAllQuestions(request, response) {
+  const questions = await getAllQuestionsDb();
+  console.log(questions)
+  response.send(questions)
+}
+
+module.exports = {  postRandomQuestion, getAllQuestions };
