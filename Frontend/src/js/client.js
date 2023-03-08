@@ -142,7 +142,7 @@ function createButtonNext() {
 function createButtonEnd() {
   const containerEndButton = document.getElementById("endGame");
   const endButton = document.createElement("button");
-  endButton.classList.add("styled-end-button");
+  endButton.classList.add("micro-buttons");
   endButton.id = "end";
   endButton.addEventListener("click", function end() {
     resetPriorQuestion();
@@ -203,9 +203,9 @@ function endGame() {
   <div>
   <h2>You're Score</h2>
   <p>${highscore}</p>
-  <input id="userName" value="Enter Name" /> <br>
-  <button id="submitScoreButton">Submit Score</button>
-</div>
+  <input style="text-align:center;" id="userName" placeholder="Enter Name" value="" /> <br>
+  <button class="micro-buttons" id="submitScoreButton">Submit Score</button>
+  </div>
   `;
   const submitScoreButton = document.getElementById("submitScoreButton");
   submitScoreButton.addEventListener("click", function submitScore() {
@@ -245,7 +245,7 @@ function highscoreScreen(highscoreData) {
   const highscoreList = document.createElement("highscoreList");
   highscoreList.classList.add("highscoreList"); // MAIK
   highscoreList.innerHTML = `
-    <table id="highscoreTable">
+    <table class="tableCenter" id="highscoreTable">
       <tr>
         <th>Rank</th>
         <th>Name</th>
@@ -273,13 +273,10 @@ function highscoreScreen(highscoreData) {
     const userScore = document.createElement("userRank")
     userScore.innerHTML = `
     <br>
-    YOUR RANK:
-    <br>
-    ${highscoreData.position}
-    <br>
-    <i>You're not the Hero we needed but the one we deserve</i>
-    <br>
-    <button id="restartGame">Try Again</button>
+    <p style="font-size:30px;">YOUR RANK:</p>
+    <p style="font-size:35px;"> ${highscoreData.position}</p>
+    <p style="font-size:30px;"><i>You're not the Hero we needed but the one we deserve</i></p>
+    <button class="micro-buttons" id="restartGame">Try Again</button>
     <br>
     `
     highscoreList.appendChild(userScore)
@@ -320,7 +317,7 @@ function createProgressbar(id, duration, callback) {
 };
 
 function createCountdown() {
-  createProgressbar('progressbar1', '5s', function () {
+  createProgressbar('progressbar1', '50s', function () {
     getNextQuestion();
     playSound();
   });

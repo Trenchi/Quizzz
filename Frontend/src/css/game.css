@@ -1,19 +1,6 @@
-/* ########## Questions & Buttons ########## */
+/* ########## Quizzz Game CSS ########## */
 
-/* TESTING AREA VIDEO WALLPAPER */
-/*
-video#bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-*/
-/* UNDER THIS LINE TESTING SWITCH BUTTON */
-
+/* Start - Wallpaper */
 #fullscreen-bg {
     position: fixed;
     top: 0;
@@ -66,8 +53,7 @@ video#bg-video {
         display: block;
     }
 }
-
-/* TESTING AREA VIDEO WALLPAPER */
+/* End - Wallpaper */
 
 /*
 .uk-background-secondary {
@@ -114,6 +100,7 @@ video#bg-video {
     padding: 20;
 }
 
+
 /* Breaking Lines between Answer Buttons & Next Question Button */
 #br {
     width: 100%;
@@ -159,7 +146,7 @@ video#bg-video {
 
 /* Micro Buttons on Bottom */
 .micro-buttons {
-    width: 100px;
+    width: 120px;
     height: 35px;
     text-align: center;
     overflow: clip;
@@ -241,6 +228,13 @@ video#bg-video {
     }
 }
 /* ##########  Progress Timer Bar (End)  ########## */
+
+/* Table (HTML Card" */
+.tableCenter {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30;
+}
 
 /* Flexbox */
 .parrent-container {
