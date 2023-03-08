@@ -10,6 +10,7 @@ let answerGiven = true;
 let timer = null;
 let timePerQuestion = 5;
 let pointConversion = 1;
+let countQuestions = 0;
 
 // ###################### POST Next Question + Check Answers ################
 
@@ -65,6 +66,9 @@ function create(quiz_data) {
 
   resetPriorQuestion()
 
+  if (countQuestions < 3) {
+  console.log(countQuestions)
+  countQuestions++;
   questionsTotalDB = quiz_data.countTotal;
   current_id = quiz_data.id;
 
@@ -72,6 +76,10 @@ function create(quiz_data) {
   createButtonAnswer(quiz_data);
   createButtonNext(quiz_data);
   createCountdown();
+} else {
+  endGame();
+}
+
 }
 
 // ----------------------------------------------------------------
@@ -101,6 +109,7 @@ function createButtonAnswer(quiz_data) {
   const container = document.getElementById("answer_buttons");
   quiz_data.answers.forEach((answer, i) => {
     const button = document.createElement("button");
+    button.classList.add("styled-button"); 
     button.id = "answer_" + (i + 1);
     button.addEventListener("click", function (event) {
       user_answer = event.target.innerHTML;
@@ -172,6 +181,97 @@ document.getElementById("answer_" + i).disabled = true;
 }
 }
 
+function endGame() {
+
+  document.getElementById("question").innerHTML = `
+  <div>
+  <h2>You're Score</h2>
+  <p>${highscore}</p>
+  <input id="userName" value="Enter Name" /> <br>
+  <button id="submitScoreButton">Submit Score</button>
+</div>
+  `;
+  const submitScoreButton = document.getElementById("submitScoreButton");
+  submitScoreButton.addEventListener("click", function submitScore() {
+    userName = document.getElementById("userName").value; 
+    resetSubmitPage();
+    postHighscore(userName);
+  });
+  
+  function resetSubmitPage() {
+    document.getElementById("question").innerHTML = "";
+  };
+
+};
+
+function postHighscore(userName) {
+  
+  const fetchConfig = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: userName,
+      points: highscore,
+    }),
+  };
+
+  fetch("http://localhost:4000/highscore", fetchConfig)
+    .then((res) => res.json())
+    .then((json) => highscoreScreen(json))
+    .catch((error) => console.log(error));
+
+};
+
+function highscoreScreen(highscoreData) {
+  const highscoreScreen = document.getElementById("question");
+  const highscoreList = document.createElement("highscoreList");
+  highscoreList.classList.add("highscoreList"); // MAIK
+  highscoreList.innerHTML = `
+    <table id="highscoreTable">
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </table>
+    `;
+    highscoreScreen.appendChild(highscoreList);
+
+    const table = document.getElementById("highscoreTable");
+    highscoreData.highscore.forEach((rowData, i) => {
+      const highscoreRow = document.createElement("tr");
+      const highscoreEntryRank = document.createElement("td");
+      highscoreEntryRank.textContent = rowData.position;
+      const highscoreEntryName = document.createElement("td");
+      highscoreEntryName.textContent = rowData.username;
+      const highscoreEntryScore = document.createElement("td");
+      highscoreEntryScore.textContent = rowData.points;
+      highscoreRow.appendChild(highscoreEntryRank);
+      highscoreRow.appendChild(highscoreEntryName);
+      highscoreRow.appendChild(highscoreEntryScore);
+      table.appendChild(highscoreRow);
+    })
+
+    const userScore = document.createElement("userRank")
+    userScore.innerHTML = `
+    <br>
+    YOUR RANK:
+    <br>
+    ${highscoreData.position}
+    <br>
+    <i>You're not the Hero we needed but the one we deserve</i>
+    <br>
+    <button>Try Again</button>
+    <br>
+    `
+    highscoreScreen.appendChild(userScore);
+
+
+
+}
+
 // ############### Progress Timer Bar ##################
 
 function createProgressbar(id, duration, callback) {
@@ -196,7 +296,7 @@ function createProgressbar(id, duration, callback) {
 
   // When everything is set up we start the animation
   progressbarinner.style.animationPlayState = 'running';
-}
+};
 
 function createCountdown() {
   createProgressbar('progressbar1', '5s', function () {
@@ -215,7 +315,7 @@ function deleteTimer() {
   let element = document.getElementById('progressbar1');
   element.querySelectorAll('*').forEach(n => n.remove());
   // countdown();
-}
+};
 
 
 // ################### Play Sound ########################
@@ -227,7 +327,7 @@ function playSound() {
   sound.currentTime = 0;
   sound.volume = 0.35; // A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value.
   sound.play();
-}
+};
 
 // #######################################################
 // ############## MAIN ###################################
