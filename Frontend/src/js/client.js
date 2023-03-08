@@ -74,8 +74,9 @@ function create(quiz_data) {
 
   createQuestionLine(quiz_data);
   createButtonAnswer(quiz_data);
-  createButtonNext(quiz_data);
   createCountdown();
+  createButtonNext(quiz_data);
+  createButtonEnd();
 } else {
   endGame();
 }
@@ -98,6 +99,7 @@ function resetAnswers() {
     br.remove();
   }
   document.getElementById("next").remove();
+  document.getElementById("end").remove();
 }
 
 function createQuestionLine(quiz_data) {
@@ -135,6 +137,20 @@ function createButtonNext() {
   });
   nextButton.textContent = "Next Question";
   containerNextButton.appendChild(nextButton);
+}
+
+function createButtonEnd() {
+  const containerEndButton = document.getElementById("endGame");
+  const endButton = document.createElement("button");
+  endButton.classList.add("styled-end-button");
+  endButton.id = "end";
+  endButton.addEventListener("click", function end() {
+    resetPriorQuestion();
+    endGame();
+    // playSound();
+  });
+  endButton.textContent = "End Game";
+  containerEndButton.appendChild(endButton);
 }
 
 function checkAnswers(res) {
@@ -263,13 +279,18 @@ function highscoreScreen(highscoreData) {
     <br>
     <i>You're not the Hero we needed but the one we deserve</i>
     <br>
-    <button>Try Again</button>
+    <button id="restartGame">Try Again</button>
     <br>
     `
-    highscoreScreen.appendChild(userScore);
+    highscoreList.appendChild(userScore)
 
-
-
+    document.getElementById("restartGame").addEventListener("click", function restartGame() {
+      highscoreList.remove();
+      dont_ask = [];
+      highscore = 0;
+      countQuestions = 0;
+      getNextQuestion();
+    });
 }
 
 // ############### Progress Timer Bar ##################
