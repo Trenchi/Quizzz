@@ -396,7 +396,7 @@ function sandboxPage() {
       const questions = document.createElement("item");
       questions.id = "question_" + question.id;
       questions.innerHTML = `
-      <input type="checkbox" name="box" value=${question.id} id="${question.id}" checked="true">No. ${question.id}: ${question.question}<br>
+      <input type="checkbox" name="box" class="uk-checkbox" value=${question.id} id="${question.id}" checked="true"> No. ${question.id}: ${question.question}<br>
       <br>
       `
       listAllQuestions.appendChild(questions);
