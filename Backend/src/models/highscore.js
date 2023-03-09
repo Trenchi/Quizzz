@@ -25,4 +25,12 @@ const position = await pgClient.query(`SELECT position, username, points
 return position.rows[0].position;
 }
 
-module.exports = { getHighscoreDB, postHighscoreDB };
+async function getQuoteDB(quoteType) {
+    const res = await pgClient.query(`SELECT * FROM public.quotes WHERE type = '${quoteType}'  ORDER BY random() LIMIT 1`)
+    return res.rows[0].quote
+}
+
+
+module.exports = { getHighscoreDB, postHighscoreDB, getQuoteDB };
+
+
