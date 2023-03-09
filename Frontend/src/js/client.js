@@ -499,9 +499,10 @@ function sandboxPage() {
   document.getElementById("question").innerHTML = `
   <div id="firstStartButtonSandbox">
   <h2 style="margin: 0;">Choose which questions:</h2>
-  <button id="selectAllTrue" onclick="selectAllTrue()" >Select All</button>
-  <button id="SelectAllFalse" onclick="selectAllFalse()">Deselect All</button>
   </div>
+  <button class="micro-buttons" id="selectAllTrue" onclick="selectAllTrue()" >Select All</button>
+  <button class="micro-buttons" id="SelectAllFalse" onclick="selectAllFalse()">Deselect All</button>
+  <p></p>
   <div id="listAllQuestions">
   `;
 
@@ -552,10 +553,10 @@ function sandboxPage() {
     });
     position.appendChild(button);
 
-    const p_tag = document.createElement("p");
-    p_tag.innerHTML = "<p>";
-    p_tag.classList.add("p-tag");
-    position.appendChild(p_tag);
+    // const p_tag = document.createElement("p");
+    // p_tag.innerHTML = "<p>";
+    // p_tag.classList.add("p-tag");
+    // position.appendChild(p_tag);
   }
 }
 

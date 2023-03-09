@@ -250,10 +250,10 @@ p {
 /* ##########  Progress Timer Bar (End)  ########## */
 
 /* Remove Margin and padding from specific p-tag */
-.p-tag {
+/* .p-tag {
     margin: 0;
     padding: 0;
-}
+} */
 
 /* Fonts Import */
 @font-face {
