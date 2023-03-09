@@ -66,6 +66,8 @@ function create(quiz_data) {
     highscore += addScore;
     document.getElementById("score").innerHTML = "Score: " + highscore;
     document.getElementById("scoreAdd").innerHTML = " " + addScore;
+
+    checkPoints(false);
     console.log("no answer - 500");
   }
   answerGiven = false;
@@ -235,11 +237,23 @@ function checkPoints(correct) {
     document.getElementById("score").innerHTML = "Score: " + highscore;
     
   } else if (correct === false) {
+    if (answerGiven === true) {
     streak = 0;
     addScore = -750;
+    actionText = "Ouch!"
     highscore += addScore;
     document.getElementById("score").innerHTML = "Score: " + highscore;
     document.getElementById("scoreAdd").innerHTML = " " + addScore;
+    document.getElementById("scoreBonus").innerHTML = actionText;
+    } else {
+      streak = 0;
+      addScore = -500;
+      actionText = "Ouch!"
+      highscore += addScore;
+      document.getElementById("score").innerHTML = "Score: " + highscore;
+      document.getElementById("scoreAdd").innerHTML = " " + addScore;
+      document.getElementById("scoreBonus").innerHTML = actionText;
+    }
   }
 }
 
