@@ -24,6 +24,13 @@ class Question {
       countTotal: this.countTotal
     }
   }
+
+  asJsonForSandbox(){
+    return {
+      id: this.id,
+      question: this.question
+    }
+  }
 }
 
 async function questionsTotal() {
@@ -50,5 +57,10 @@ async function postRandomQuestionDB(array_id) {
   return res.rows.map(g => new Question(g))
 }
 
-module.exports = { postRandomQuestionDB, questionsTotal };
+async function getAllQuestionsDb() {
+  const res = await pgClient.query("SELECT * FROM questions;");
+  return res.rows.map(g => new Question(g))
+}
+
+module.exports = { postRandomQuestionDB, questionsTotal, getAllQuestionsDb };
 
