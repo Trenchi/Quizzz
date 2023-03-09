@@ -24,20 +24,15 @@
                 <source src="./content/video/80s-Background .mp4" type="video/mp4">
             </video>
             <img src="./content/jpg/80s-Background.jpg" alt="Hintergrundbild" id="fullscreen-bg-image">
-            <div>
-                <p id="score">Score: 0000000</p>
-                <p id="scoreAdd">Correct 0</p>
-                <p id="scoreBonus">Combo! 0</p>
-            </div>
             <button id="fullscreen-bg-toggle">Bild/Video wechseln</button>
         </div>
         <!-- End - Toggle Button to Switch -->
 
         <!-- Start - Highscore Display -->
-        <div id="liveHighScore">
-            <p id="score"        style="margin: 0; padding: 0;"></p>
-            <p id="scoreAdd"     style="margin: 0; padding: 0;"></p>
-            <p id="comboBonus"   style="margin: 0; padding: 0;"></p>
+        <div class="scoreBlockFlex">
+            <div id="score"></div>
+            <div id="scoreAdd"></div>
+            <div class="opacity" id="scoreBonus"></div>
         </div>
         <!-- End - Highscore Display -->
 
