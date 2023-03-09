@@ -8,7 +8,7 @@ let questionsTotalDB = 0;
 let highscore = 0;
 let answerGiven = true;
 let timer = null;
-let timePerQuestion = 5;
+let timePerQuestion = 10;
 let pointConversion = 1;
 let countQuestions = 0;
 
@@ -66,20 +66,20 @@ function create(quiz_data) {
 
   resetPriorQuestion()
 
-  if (countQuestions < 3) {
-  console.log(countQuestions)
-  countQuestions++;
-  questionsTotalDB = quiz_data.countTotal;
-  current_id = quiz_data.id;
+  if (countQuestions < 9) {
+    console.log(countQuestions)
+    countQuestions++;
+    questionsTotalDB = quiz_data.countTotal;
+    current_id = quiz_data.id;
 
-  createQuestionLine(quiz_data);
-  createButtonAnswer(quiz_data);
-  createCountdown();
-  createButtonNext(quiz_data);
-  createButtonEnd();
-} else {
-  endGame();
-}
+    createQuestionLine(quiz_data);
+    createButtonAnswer(quiz_data);
+    createCountdown();
+    createButtonNext(quiz_data);
+    createButtonEnd();
+  } else {
+    endGame();
+  }
 
 }
 
@@ -111,7 +111,7 @@ function createButtonAnswer(quiz_data) {
   const container = document.getElementById("answer_buttons");
   quiz_data.answers.forEach((answer, i) => {
     const button = document.createElement("button");
-    button.classList.add("styled-button"); 
+    button.classList.add("styled-button");
     button.id = "answer_" + (i + 1);
     button.addEventListener("click", function (event) {
       user_answer = event.target.innerHTML;
@@ -194,9 +194,9 @@ function checkAnswers(res) {
 }
 
 function blockButtons() {
-for (let i = 1; i < current_answers_total + 1; i++) {
-document.getElementById("answer_" + i).disabled = true;
-}
+  for (let i = 1; i < current_answers_total + 1; i++) {
+    document.getElementById("answer_" + i).disabled = true;
+  }
 }
 
 function endGame() {
@@ -212,19 +212,18 @@ function endGame() {
   const submitScoreButton = document.getElementById("submitScoreButton");
   submitScoreButton.addEventListener("click", function submitScore() {
     userName = document.getElementById("userName").value;
-    resetSubmitPage();
+    resetQuestionId();
     postHighscore(userName);
     playSound("yeah");
   });
-  
-  function resetSubmitPage() {
-    document.getElementById("question").innerHTML = "";
-  };
+};
 
+function resetQuestionId() {
+  document.getElementById("question").innerHTML = "";
 };
 
 function postHighscore(userName) {
-  
+
   const fetchConfig = {
     method: "POST",
     headers: {
@@ -256,25 +255,25 @@ function highscoreScreen(highscoreData) {
       </tr>
     </table>
     `;
-    highscoreScreen.appendChild(highscoreList);
+  highscoreScreen.appendChild(highscoreList);
 
-    const table = document.getElementById("highscoreTable");
-    highscoreData.highscore.forEach((rowData, i) => {
-      const highscoreRow = document.createElement("tr");
-      const highscoreEntryRank = document.createElement("td");
-      highscoreEntryRank.textContent = rowData.position;
-      const highscoreEntryName = document.createElement("td");
-      highscoreEntryName.textContent = rowData.username;
-      const highscoreEntryScore = document.createElement("td");
-      highscoreEntryScore.textContent = rowData.points;
-      highscoreRow.appendChild(highscoreEntryRank);
-      highscoreRow.appendChild(highscoreEntryName);
-      highscoreRow.appendChild(highscoreEntryScore);
-      table.appendChild(highscoreRow);
-    })
+  const table = document.getElementById("highscoreTable");
+  highscoreData.highscore.forEach((rowData, i) => {
+    const highscoreRow = document.createElement("tr");
+    const highscoreEntryRank = document.createElement("td");
+    highscoreEntryRank.textContent = rowData.position;
+    const highscoreEntryName = document.createElement("td");
+    highscoreEntryName.textContent = rowData.username;
+    const highscoreEntryScore = document.createElement("td");
+    highscoreEntryScore.textContent = rowData.points;
+    highscoreRow.appendChild(highscoreEntryRank);
+    highscoreRow.appendChild(highscoreEntryName);
+    highscoreRow.appendChild(highscoreEntryScore);
+    table.appendChild(highscoreRow);
+  })
 
-    const userScore = document.createElement("userRank")
-    userScore.innerHTML = `
+  const userScore = document.createElement("userRank")
+  userScore.innerHTML = `
     <br>
     <p style="font-size:30px;">YOUR RANK:</p>
     <p style="font-size:35px;"> ${highscoreData.position}</p>
@@ -282,15 +281,15 @@ function highscoreScreen(highscoreData) {
     <button class="micro-buttons" id="restartGame">Try Again</button>
     <br>
     `
-    highscoreList.appendChild(userScore)
+  highscoreList.appendChild(userScore)
 
-    document.getElementById("restartGame").addEventListener("click", function restartGame() {
-      highscoreList.remove();
-      dont_ask = [];
-      highscore = 0;
-      countQuestions = 0;
-      getNextQuestion();
-    });
+  document.getElementById("restartGame").addEventListener("click", function restartGame() {
+    highscoreList.remove();
+    dont_ask = [];
+    highscore = 0;
+    countQuestions = 0;
+    getNextQuestion();
+  });
 }
 
 // ############### Progress Timer Bar ##################
@@ -320,15 +319,15 @@ function createProgressbar(id, duration, callback) {
 };
 
 function createCountdown() {
-  createProgressbar('progressbar1', '50s', function () {
+  createProgressbar('progressbar1', timePerQuestion + 's', function () {
     getNextQuestion();
     playSound("wrong");
   });
   clearInterval(timer);
-  let secondsLeft = 5;
-  timer = setInterval(function() {
+  let secondsLeft = timePerQuestion;
+  timer = setInterval(function () {
     secondsLeft -= 1;
-    pointConversion = secondsLeft/timePerQuestion
+    pointConversion = secondsLeft / timePerQuestion
   }, 1000);
 };
 
@@ -369,6 +368,73 @@ function playSound(soundId) {
 // ############## MAIN ###################################
 // #######################################################
 
-getNextQuestion();
-// getData();
-// countdown();
+menu();
+
+function menu() {
+
+  document.getElementById("question").innerHTML = `
+  <div>
+  <h2>Choose Play Mode</h2>
+  <button id="startArcadeButton">Arcade</button>
+  <button id="startSandboxButton">Sandbox</button>
+  </div>
+  `;
+  const startArcadeButton = document.getElementById("startArcadeButton");
+  startArcadeButton.addEventListener("click", function startArcade() {
+    resetQuestionId();
+    getNextQuestion()
+  });
+
+  const startSandboxButton = document.getElementById("startSandboxButton");
+  startSandboxButton.addEventListener("click", function startSandbox() {
+    resetQuestionId();
+    sandboxPage();
+  });
+
+};
+
+function sandboxPage() {
+  document.getElementById("question").innerHTML = `
+  <div>
+  <h2>Choose which questions:</h2>
+  </div>
+  <div id="listAllQuestions">
+  `;
+
+  fetch("http://localhost:4000/question/all")
+    .then((res) => res.json())
+    .then((json) => questionsTotalDB(json))
+    .catch((error) => console.log(error))
+
+  function questionsTotalDB(json) {
+    const listAllQuestions = document.getElementById("listAllQuestions")
+    // const question = document.createElement(question)
+    json.forEach((question) => {
+
+      const questions = document.createElement("item");
+      questions.id = "question_" + question.id;
+      questions.innerHTML = `
+      <input type="checkbox" name="box" class="uk-checkbox" value=${question.id} id="${question.id}" checked="true"> No. ${question.id}: ${question.question}<br>
+      <br>
+      `
+      listAllQuestions.appendChild(questions);
+    })
+
+    const button = document.createElement("button");
+    button.id = "submitQuestionButton";
+    button.innerHTML = "Start Game";
+    button.addEventListener("click", function submitQuestion() {
+      
+      var checkboxes = document.getElementsByName('box');
+
+      // looping through all checkboxes
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked === false){
+        dont_ask.push(checkboxes[i].value);
+      }}
+      resetQuestionId();
+      getNextQuestion();
+    }  );
+      listAllQuestions.appendChild(button);
+    } 
+  }

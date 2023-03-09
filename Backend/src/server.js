@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const {  postRandomQuestion } = require("./controller/questions");
+const {  postRandomQuestion, getAllQuestions } = require("./controller/questions");
 const { checkAnswer } = require("./controller/answers");
 const { getHighscore, postHighscore } = require("./controller/highscore");
 const { connectToDatabase, connectAndQuery } = require('./services/database');
@@ -14,6 +14,7 @@ app.post("/question/random", postRandomQuestion);
 app.post("/question/check_answer", checkAnswer);
 app.get("/highscore", getHighscore);
 app.post("/highscore", postHighscore);
+app.get("/question/all", getAllQuestions);
 
 connectToDatabase().then(() => {
   app.listen(port, () => {
