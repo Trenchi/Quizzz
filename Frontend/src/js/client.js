@@ -384,6 +384,7 @@ function highscoreScreen(highscoreData) {
 
   document.getElementById("restartGame").addEventListener("click", function restartGame() {
     highscoreList.remove();
+    clearHighscore();
     dont_ask = [];
     highscore = 0;
     countQuestions = 0;
@@ -583,7 +584,7 @@ function sandBoxEndscreen() {
   document.getElementById("question").innerHTML = `
   <div style="padding: 125px;">
   <h2>Good job, all questions answered correct once!</h2>
-  <p>${highscore}</p>
+  <div>${highscore}</div>
   <br>
   <button class="micro-buttons" id="goBackButton">Go back to Menu</button>
   </div>
