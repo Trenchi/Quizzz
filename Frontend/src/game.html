@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de" class="uk-light uk-background-secondary uk-background-norepeat uk-background-top-center">
+<html lang="de">
 <!-- Enable Dark Mode -->
 
 <head>
-
+    <!-- HTML Options -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizzz - Ein Projekt con Team 4</title>
@@ -13,13 +13,11 @@
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="./css/game.css" />
-
 </head>
 
 <body>
-
-
     <div class="parrent-container">
+        
         <!-- Start - Toggle Button to Switch -->
         <div id="fullscreen-bg">
             <video autoplay loop muted poster="./content/jpg/80s-Background.jpg">
@@ -35,20 +33,31 @@
         </div>
         <!-- End - Toggle Button to Switch -->
 
+        <!-- Start - Highscore Display -->
+        <div id="liveHighScore">
+            <p id="score"        style="margin: 0; padding: 0;"></p>
+            <p id="scoreAdd"     style="margin: 0; padding: 0;"></p>
+            <p id="comboBonus"   style="margin: 0; padding: 0;"></p>
+        </div>
+        <!-- End - Highscore Display -->
+
+        <!-- Start - Display Question -->
         <div class="child-1">
             <h2 id="question"></h2>
         </div>
+        <!-- End - Display Question -->
 
+        <!-- Start - Create Answer Buttons and New Question Button -->
         <div id="br" class="child2">
             <div class="" id="answer_buttons" style="margin: auto;"></div>
             <div class="" id='progressbar1'></div>
             <div class="" id="next_button"></div>
         </div>
+        <!-- End - Create Answer Buttons and New Question Button -->
 
-        <!-- <div id="endGame"></div> -->
-
+        <!-- Start - Create and Display "End Game" Button -->
         <div class="child-4" id="endGame"></div>
-
+        <!-- End - Create and Display "End Game" Button -->
     </div>
 </body>
 
