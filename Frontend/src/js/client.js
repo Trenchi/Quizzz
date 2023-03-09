@@ -181,7 +181,7 @@ function createButtonEnd() {
     playSound("game-over");
     clearHighscore();
     resetPriorQuestion();
-    if (gameMode === "sandbox" && dont_ask.length == questionsTotalDB ) {
+    if (gameMode === "sandbox" ) {
       sandBoxEndscreen()
       } else {
         endGame();
