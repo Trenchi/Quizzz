@@ -157,11 +157,19 @@ function createButtonEnd() {
   endButton.id = "end";
   endButton.addEventListener("click", function end() {
     playSound("game-over");
+    clearHighscore();
     resetPriorQuestion();
     endGame();
   });
   endButton.textContent = "End Game";
   containerEndButton.appendChild(endButton);
+}
+
+//NOTE - Clear Top Highscore by clicking on "End Game" Button
+function clearHighscore() {
+  document.getElementById("scoreAdd").innerHTML = "";
+  document.getElementById("scoreBonus").innerHTML = "";
+  document.getElementById("score").innerHTML = "";
 }
 
 function checkAnswers(res) {
@@ -340,8 +348,8 @@ function highscoreScreen(highscoreData) {
   userScore.innerHTML = `
     <br>
     <p style="font-size:30px;">YOUR RANK:</p>
-    <p style="font-size:35px;"> ${highscoreData.position}</p>
-    <p style="font-size:30px;"><i>You're not the Hero we needed but the one we deserve</i></p>
+    <p style="font-size:35px;">${highscoreData.position}</p>
+    <p style="font-size:30px;"><i>${highscoreData.quote}</i></p>
     <button class="micro-buttons" id="restartGame">Try Again</button>
     <br>
     `
