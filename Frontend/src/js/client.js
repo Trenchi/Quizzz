@@ -202,10 +202,10 @@ function blockButtons() {
 function endGame() {
 
   document.getElementById("question").innerHTML = `
-  <div style="padding: 125px">
+  <div style="padding: 125px;">
   <h2>You're Score</h2>
   <p>${highscore}</p>
-  <input style="text-align:center;" id="userName" placeholder="Enter Name" value="" /> <br>
+  <input style="text-align:center; font-family: OrbitronCustom;" id="userName" placeholder="Enter Name" value="" /> <br>
   <button class="micro-buttons" id="submitScoreButton">Submit Score</button>
   </div>
   `;
@@ -373,10 +373,10 @@ menu();
 function menu() {
 
   document.getElementById("question").innerHTML = `
-  <div>
+  <div style="padding: 45px;">
   <h2>Choose Play Mode</h2>
-  <button id="startArcadeButton">Arcade</button>
-  <button id="startSandboxButton">Sandbox</button>
+  <button class="micro-buttons" id="startArcadeButton">Arcade</button>
+  <button class="micro-buttons" id="startSandboxButton">Sandbox</button>
   </div>
   `;
   const startArcadeButton = document.getElementById("startArcadeButton");
@@ -395,11 +395,14 @@ function menu() {
 
 function sandboxPage() {
   document.getElementById("question").innerHTML = `
-  <div>
-  <h2>Choose which questions:</h2>
+  <div id="firstStartButtonSandbox">
+  <h2 style="margin: 0;">Choose which questions:</h2>
+  
   </div>
   <div id="listAllQuestions">
   `;
+
+  createStartButtonSandbox(firstStartButtonSandbox);
 
   fetch("http://localhost:4000/question/all")
     .then((res) => res.json())
@@ -419,22 +422,32 @@ function sandboxPage() {
       `
       listAllQuestions.appendChild(questions);
     })
-
-    const button = document.createElement("button");
-    button.id = "submitQuestionButton";
-    button.innerHTML = "Start Game";
-    button.addEventListener("click", function submitQuestion() {
-      
-      var checkboxes = document.getElementsByName('box');
-
-      // looping through all checkboxes
-      for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked === false){
-        dont_ask.push(checkboxes[i].value);
-      }}
-      resetQuestionId();
-      getNextQuestion();
-    }  );
-      listAllQuestions.appendChild(button);
-    } 
+    createStartButtonSandbox(question);
   }
+
+
+function createStartButtonSandbox(position) {
+  const button = document.createElement("button");
+  button.id = "submitQuestionButton";
+  button.classList.add("styled-button");
+  button.innerHTML = "Start Game";
+  button.addEventListener("click", function submitQuestion() {
+    
+    var checkboxes = document.getElementsByName('box');
+
+    // looping through all checkboxes
+    for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked === false){
+      dont_ask.push(checkboxes[i].value);
+    }}
+    resetQuestionId();
+    getNextQuestion();
+  }  );
+    position.appendChild(button);
+
+    const p_tag = document.createElement("p");
+    p_tag.innerHTML = "<p>";
+    p_tag.classList.add("p-tag");
+    position.appendChild(p_tag);
+  } 
+}
