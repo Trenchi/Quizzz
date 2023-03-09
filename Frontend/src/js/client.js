@@ -69,14 +69,15 @@ function create(quiz_data) {
     document.getElementById("scoreAdd").innerHTML = " " + addScore;
 
     checkPoints(false);
-    console.log("no answer - 500");
+    // console.log("no answer - 500");
   }
   answerGiven = false;
 
-  console.log("current highscore " + highscore);
+  // console.log("current highscore " + highscore);
 
   resetPriorQuestion()
 
+  if (gameMode === "arcade") {
   if (countQuestions < questionsPerGame) {
     // console.log(countQuestions)
     countQuestions++;
@@ -89,14 +90,23 @@ function create(quiz_data) {
     createButtonNext(quiz_data);
     createButtonEnd();
   } else {
-    if (gameMode === "arcade") {
-      endGame();
-    } else {
-      sandBoxEndscreen()
-    }
-
+    endGame();
   }
-
+} else if (gameMode === "sandbox"){
+      // console.log(dont_ask.length);
+      // console.log(questionsTotalDB)
+    if (dont_ask.length < questionsTotalDB){
+      current_id = quiz_data.id;
+  
+      createQuestionLine(quiz_data);
+      createButtonAnswer(quiz_data);
+      createCountdown();
+      createButtonNext(quiz_data);
+      createButtonEnd();
+    } else {
+      sandBoxEndscreen();
+    }
+  }
 }
 
 // ----------------------------------------------------------------
@@ -148,8 +158,14 @@ function createButtonNext() {
   const nextButton = document.createElement("button");
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
-    console.log(streak);
+    // console.log(streak);
+    if (gameMode == "sandbox" && dont_ask.length == questionsTotalDB ) {
+      resetPriorQuestion()
+      resetQuestionId();
+      sandBoxEndscreen();
+    } else {
     getNextQuestion();
+  }
     // playSound("BonusPoint");
   });
   nextButton.textContent = "Next Question";
@@ -165,7 +181,11 @@ function createButtonEnd() {
     playSound("game-over");
     clearHighscore();
     resetPriorQuestion();
-    endGame();
+    if (gameMode === "sandbox" && dont_ask.length == questionsTotalDB ) {
+      sandBoxEndscreen()
+      } else {
+        endGame();
+    };
   });
   endButton.textContent = "End Game";
   containerEndButton.appendChild(endButton);
@@ -189,16 +209,13 @@ function checkAnswers(res) {
           document.getElementById(index_id).style.backgroundColor = "#02A611";
           if (user_answer == answer.text) {
             answerGiven = true;
-            console.log("correct");
+            // console.log("correct");
             playSound("bonus-points");
-
             checkPoints(true);
-
-            console.log("+ " + 1000 * pointConversion);
-            console.log("current highscore " + highscore);
-
+            // console.log("+ " + 1000 * pointConversion);
+            // console.log("current highscore " + highscore);
             dont_ask.push(answer.questionId);
-            if (questionsTotalDB == dont_ask.length) {
+            if (questionsTotalDB == dont_ask.length && gameMode === "arcade") {
               dont_ask = [0];
             }
             // console.log(res.length);
@@ -482,7 +499,8 @@ function sandboxPage() {
   document.getElementById("question").innerHTML = `
   <div id="firstStartButtonSandbox">
   <h2 style="margin: 0;">Choose which questions:</h2>
-  
+  <button id="selectAllTrue" onclick="selectAllTrue()" >Select All</button>
+  <button id="SelectAllFalse" onclick="selectAllFalse()">Deselect All</button>
   </div>
   <div id="listAllQuestions">
   `;
@@ -491,10 +509,10 @@ function sandboxPage() {
 
   fetch("http://localhost:4000/question/all")
     .then((res) => res.json())
-    .then((json) => questionsTotalDB(json))
+    .then((json) => getQuestionsTotalDB(json))
     .catch((error) => console.log(error))
 
-  function questionsTotalDB(json) {
+  function getQuestionsTotalDB(json) {
     const listAllQuestions = document.getElementById("listAllQuestions")
     // const question = document.createElement(question)
     json.forEach((question) => {
@@ -526,6 +544,7 @@ function sandboxPage() {
           dont_ask.push(checkboxes[i].value);
         }
       }
+      // console.log(checkboxes.length)
       questionsPerGame = checkboxes.length - dont_ask.length;
       questionsTotalDB = checkboxes.length;
       resetQuestionId();
@@ -540,8 +559,26 @@ function sandboxPage() {
   }
 }
 
+function selectAllTrue() {
+  var checkboxes = document.getElementsByName('box');
+
+      // looping through all checkboxes
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true;
+      }
+}
+
+function selectAllFalse(){
+  var checkboxes = document.getElementsByName('box');
+
+      // looping through all checkboxes
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+      }
+}
 
 function sandBoxEndscreen() {
+
   document.getElementById("question").innerHTML = `
   <div style="padding: 125px;">
   <h2>Good job, all questions answered correct once!</h2>
@@ -557,4 +594,5 @@ function sandBoxEndscreen() {
     resetQuestionId();
     menu()
   });
+  
 }
