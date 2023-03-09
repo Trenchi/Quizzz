@@ -15,6 +15,7 @@ let questionsPerGame = 10;
 let addScore = 0;
 let streak = 0;
 let bonusScore = 0;
+let gameMode = "";
 
 
 // ###################### POST Next Question + Check Answers ################
@@ -76,7 +77,7 @@ function create(quiz_data) {
 
   resetPriorQuestion()
 
-  if (countQuestions < questionsPerGame + 1) {
+  if (countQuestions < questionsPerGame) {
     // console.log(countQuestions)
     countQuestions++;
     questionsTotalDB = quiz_data.countTotal;
@@ -88,7 +89,12 @@ function create(quiz_data) {
     createButtonNext(quiz_data);
     createButtonEnd();
   } else {
-    endGame();
+    if (gameMode === "arcade") {
+      endGame();
+    } else {
+      sandBoxEndscreen()
+    }
+
   }
 
 }
@@ -243,16 +249,16 @@ function checkPoints(correct) {
     document.getElementById("scoreAdd").innerHTML = "+" + addScore;
     document.getElementById("scoreBonus").innerHTML = actionText + "+" + bonusScore;
     document.getElementById("score").innerHTML = "Score: " + highscore;
-    
+
   } else if (correct === false) {
     if (answerGiven === true) {
-    streak = 0;
-    addScore = -750;
-    actionText = "Ouch!"
-    highscore += addScore;
-    document.getElementById("score").innerHTML = "Score: " + highscore;
-    document.getElementById("scoreAdd").innerHTML = " " + addScore;
-    document.getElementById("scoreBonus").innerHTML = actionText;
+      streak = 0;
+      addScore = -750;
+      actionText = "Ouch!"
+      highscore += addScore;
+      document.getElementById("score").innerHTML = "Score: " + highscore;
+      document.getElementById("scoreAdd").innerHTML = " " + addScore;
+      document.getElementById("scoreBonus").innerHTML = actionText;
     } else {
       streak = 0;
       addScore = -500;
@@ -284,10 +290,14 @@ function endGame() {
   const submitScoreButton = document.getElementById("submitScoreButton");
   submitScoreButton.addEventListener("click", function submitScore() {
     userName = document.getElementById("userName").value;
+    countQuestions = 0;
+    dont_ask = [];
     resetQuestionId();
     postHighscore(userName);
     playSound("yeah");
   });
+
+
 };
 
 function resetQuestionId() {
@@ -453,12 +463,15 @@ function menu() {
   `;
   const startArcadeButton = document.getElementById("startArcadeButton");
   startArcadeButton.addEventListener("click", function startArcade() {
+    gameMode = "arcade";
+    questionsPerGame = 10;
     resetQuestionId();
     getNextQuestion()
   });
 
   const startSandboxButton = document.getElementById("startSandboxButton");
   startSandboxButton.addEventListener("click", function startSandbox() {
+    gameMode = "sandbox";
     resetQuestionId();
     sandboxPage();
   });
@@ -498,28 +511,50 @@ function sandboxPage() {
   }
 
 
-function createStartButtonSandbox(position) {
-  const button = document.createElement("button");
-  button.id = "submitQuestionButton";
-  button.classList.add("styled-button");
-  button.innerHTML = "Start Game";
-  button.addEventListener("click", function submitQuestion() {
-    
-    var checkboxes = document.getElementsByName('box');
+  function createStartButtonSandbox(position) {
+    const button = document.createElement("button");
+    button.id = "submitQuestionButton";
+    button.classList.add("styled-button");
+    button.innerHTML = "Start Game";
+    button.addEventListener("click", function submitQuestion() {
 
-    // looping through all checkboxes
-    for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked === false){
-      dont_ask.push(checkboxes[i].value);
-    }}
-    resetQuestionId();
-    getNextQuestion();
-  }  );
+      var checkboxes = document.getElementsByName('box');
+
+      // looping through all checkboxes
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked === false) {
+          dont_ask.push(checkboxes[i].value);
+        }
+      }
+      questionsPerGame = checkboxes.length - dont_ask.length;
+      questionsTotalDB = checkboxes.length;
+      resetQuestionId();
+      getNextQuestion();
+    });
     position.appendChild(button);
 
     const p_tag = document.createElement("p");
     p_tag.innerHTML = "<p>";
     p_tag.classList.add("p-tag");
     position.appendChild(p_tag);
-  } 
+  }
+}
+
+
+function sandBoxEndscreen() {
+  document.getElementById("question").innerHTML = `
+  <div style="padding: 125px;">
+  <h2>Good job, all questions answered correct once!</h2>
+  <p>${highscore}</p>
+  <br>
+  <button class="micro-buttons" id="goBackButton">Go back to Menu</button>
+  </div>
+  `;
+  const goBackButton = document.getElementById("goBackButton");
+  goBackButton.addEventListener("click", function goToMenu() {
+    dont_ask = [];
+    countQuestions = 0;
+    resetQuestionId();
+    menu()
+  });
 }
