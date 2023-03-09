@@ -11,6 +11,11 @@ let timer = null;
 let timePerQuestion = 10;
 let pointConversion = 1;
 let countQuestions = 0;
+let questionsPerGame = 10;
+let addScore = 0;
+let streak = 0;
+let bonusScore = 0;
+
 
 // ###################### POST Next Question + Check Answers ################
 
@@ -57,7 +62,12 @@ function check_answer_backend() {
 function create(quiz_data) {
 
   if (answerGiven === false) {
-    highscore -= 500;
+    addScore = -500;
+    highscore += addScore;
+    document.getElementById("score").innerHTML = "Score: " + highscore;
+    document.getElementById("scoreAdd").innerHTML = " " + addScore;
+
+    checkPoints(false);
     console.log("no answer - 500");
   }
   answerGiven = false;
@@ -66,8 +76,8 @@ function create(quiz_data) {
 
   resetPriorQuestion()
 
-  if (countQuestions < 9) {
-    console.log(countQuestions)
+  if (countQuestions < questionsPerGame + 1) {
+    // console.log(countQuestions)
     countQuestions++;
     questionsTotalDB = quiz_data.countTotal;
     current_id = quiz_data.id;
@@ -132,6 +142,7 @@ function createButtonNext() {
   const nextButton = document.createElement("button");
   nextButton.id = "next";
   nextButton.addEventListener("click", function next() {
+    console.log(streak);
     getNextQuestion();
     // playSound("BonusPoint");
   });
@@ -166,9 +177,12 @@ function checkAnswers(res) {
             answerGiven = true;
             console.log("correct");
             playSound("bonus-points");
-            highscore += 1000 * pointConversion;
+
+            checkPoints(true);
+
             console.log("+ " + 1000 * pointConversion);
             console.log("current highscore " + highscore);
+
             dont_ask.push(answer.questionId);
             if (questionsTotalDB == dont_ask.length) {
               dont_ask = [0];
@@ -181,7 +195,7 @@ function checkAnswers(res) {
             playSound("wrong");
             console.log("- 500")
             console.log("current highscore " + highscore);
-            highscore -= 500;
+            checkPoints(false)
             console.log(highscore);
             blockButtons();
           }
@@ -191,6 +205,56 @@ function checkAnswers(res) {
       }
     }
   });
+}
+
+function checkPoints(correct) {
+  let actionText = "";
+  if (correct === true) {
+    streak++;
+    if (streak === 1) {
+      bonusScore = 0;
+      actionText = "Alright, keep going!";
+    } else if (streak === 2) {
+      bonusScore = 200
+      actionText = "Double Trouble!";
+    } else if (streak === 3) {
+      bonusScore = 300
+      actionText = "C-C-C-ombo!";
+    } else if (streak === 4) {
+      bonusScore = 400
+      actionText = "4 the win!";
+    } else if (streak > 4) {
+      bonusScore = 500
+      actionText = "GODLIKE!";
+    }
+
+    addScore = 1000 * pointConversion;
+    highscore += addScore;
+    highscore += bonusScore;
+
+    document.getElementById("scoreAdd").innerHTML = "+" + addScore;
+    document.getElementById("scoreBonus").innerHTML = actionText + "+" + bonusScore;
+    document.getElementById("score").innerHTML = "Score: " + highscore;
+    
+  } else if (correct === false) {
+    if (answerGiven === true) {
+    streak = 0;
+    addScore = -750;
+    actionText = "Ouch!"
+    highscore += addScore;
+    document.getElementById("score").innerHTML = "Score: " + highscore;
+    document.getElementById("scoreAdd").innerHTML = " " + addScore;
+    document.getElementById("scoreBonus").innerHTML = actionText;
+    } else {
+      streak = 0;
+      addScore = -500;
+      actionText = "Ouch!"
+      highscore += addScore;
+      document.getElementById("score").innerHTML = "Score: " + highscore;
+      document.getElementById("scoreAdd").innerHTML = " " + addScore;
+      document.getElementById("scoreBonus").innerHTML = actionText;
+    }
+  }
 }
 
 function blockButtons() {
@@ -353,7 +417,7 @@ function deleteTimer() {
 
 function playSound(soundId) {
   let sound = document.getElementById(soundId);
-  if(sound) {
+  if (sound) {
     sound.currentTime = 0;
     sound.volume = 0.35;
     sound.play();
