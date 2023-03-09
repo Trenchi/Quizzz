@@ -105,7 +105,13 @@ h2 {
     border-radius: 25px 25px;
     border-style: dashed;
     padding: 20;
-    width: 60vw;
+}
+
+p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:750px;
 }
 
 /* Breaking Lines between Answer Buttons & Next Question Button */
@@ -158,7 +164,7 @@ h2 {
     font-size: 15px;
     background-color: #660451;
     border-color: aqua;
-    border-style: dotted;
+    border-style: groove;
     color: rgb(255, 255, 255);
     margin: 4px auto;
     cursor: pointer;
@@ -184,7 +190,7 @@ h2 {
     font-size: 24px;
     background-color: #660451;
     border-color: aqua;
-    border-style: dotted;
+    border-style: groove;
     color: rgb(255, 255, 255);
     margin: 4px 2px;
     cursor: pointer;
@@ -276,15 +282,17 @@ h2 {
     align-items: center;
     top: 10px;
     font-family: OrbitronCustom;
-    font-weight: bold;
+    font-weight: bolder;
     position: fixed;
     z-index: 9999;
     font-size: 22px;
     color: #b5ff07;
-    background-color: rgba(0, 0, 0, 0.425);
-    border-style: ridge;
+    /* background-color: rgba(0, 0, 0, 0.425); */
+    /* border-style: ridge; */
     border-color: #b3ff0056;
     border-radius: 0px 25px;
     padding: 3px 25px;
     width: 450px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
