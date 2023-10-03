@@ -3,9 +3,9 @@ const { Client } = require("pg");
 const pgClient = new Client({
   user: "postgres",
   database: "quizzz-dev",
-  password: "AWS-22.10",
+  password: "MYPASSWOT",
   port: 54320,
-  host: "maikslab.my-gateway.de",
+  host: "MYURL.COM",
 });
 
 async function connectToDatabase() {
